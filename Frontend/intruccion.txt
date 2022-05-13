@@ -1,0 +1,1 @@
+npx create-react-app (para crear el archivo para la inicializacion del pry)
