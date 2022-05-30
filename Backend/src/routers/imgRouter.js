@@ -1,7 +1,5 @@
 const Images = require('../models/Images');
-const {
-    Router
-} = require('express');
+const { Router } = require('express');
 const imgRouter = Router();
 
 
@@ -45,6 +43,13 @@ imgRouter.post('/img', fileUpload, (req, res) => {
             name: name,
             data: data
         })
+
+        try {
+            fs.unlinkSync(path.join(__dirname, '../images/' + req.file.filename));
+            console.log('File removed')
+        } catch(err) {
+            console.error('Something wrong happened removing the file', err)
+        }
 
         res.send('image saved!');
     } catch (error) {

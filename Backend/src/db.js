@@ -2,8 +2,8 @@ const { Sequelize } = require("sequelize");
 
 const db = new Sequelize({
     database: "surcusalud",
-    username: "g6m15zsmcs0m",
-    password: "pscale_pw_N7cWI7RJJWSAh9E2KaQBtVYIFsPmCV4uM8g3uRy6o50",
+    username: "twb9r0loxnir",
+    password: "pscale_pw_7DaR-0zkHi0XGcufItUHlct6DxVV4oVq40YtrF61QzM",
     host: "afinrqod14q8.us-east-2.psdb.cloud",
     dialect: "mysql",
     dialectOptions: {
@@ -19,9 +19,9 @@ module.exports = db;
 /*
 
 database: surcusalud
-username: g6m15zsmcs0m
+username: twb9r0loxnir
 host: afinrqod14q8.us-east-2.psdb.cloud
-password: pscale_pw_N7cWI7RJJWSAh9E2KaQBtVYIFsPmCV4uM8g3uRy6o50
+password: pscale_pw_7DaR-0zkHi0XGcufItUHlct6DxVV4oVq40YtrF61QzM
 
 
 */
