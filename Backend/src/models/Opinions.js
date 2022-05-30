@@ -11,6 +11,6 @@ module.exports = Opiniones = db.define('opinions', {
         type: DataTypes.INTEGER
     },
     texto: {
-        type: DataTypes.S
+        type: DataTypes.STRING
     }
 });

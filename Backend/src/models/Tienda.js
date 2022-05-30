@@ -33,7 +33,7 @@ module.exports = Tienda = db.define('store', {
     }
 });
 
-export const RedesSociales = sequelize.define('social_networks', {
+module.exports = RedesSociales = db.define('social_networks', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -47,7 +47,7 @@ export const RedesSociales = sequelize.define('social_networks', {
     }
 });
 
-export const Telefonos = sequelize.define('phones', {
+module.exports = Telefonos = db.define('phones', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -61,7 +61,7 @@ export const Telefonos = sequelize.define('phones', {
     }
 });
 
-export const Correos = sequelize.define('emails', {
+module.exports = Correos = db.define('emails', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
