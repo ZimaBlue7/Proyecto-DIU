@@ -15,6 +15,9 @@ module.exports = Schedule = db.define('schedule', {
     },
     hora_fin: {
         type: DataTypes.TIME
+    },
+    fecha: {
+        type: DataTypes.DATE
     }
 })
 

@@ -12,6 +12,9 @@ const getImages = async (req, res) => {
                 ]
             }
         })
+
+        res.json(imgs);
+
     } catch (error) {
         res.status(500).json({
             typeError: "Get images",

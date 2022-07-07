@@ -29,6 +29,45 @@ imgRouter.get('/img/:id', getImage);
 
 imgRouter.delete('/img', deleteImg);
 
+imgRouter.put('/img/:id', fileUpload, async (req, res) => {
+
+    try {
+
+        const {id} = req.params;
+
+        const img = await Images.findByPk(id);
+
+        console.log(req.file)
+        const type = req.file.mimetype
+        const name = req.file.originalname
+        const data = fs.readFileSync(path.join(__dirname, '../images/' + req.file.filename))
+
+        Images.update({
+            id_user_add: img.id_user_add,
+            type: type,
+            name: name,
+            data: data
+        })
+
+        try {
+            fs.unlinkSync(path.join(__dirname, '../images/' + req.file.filename));
+            console.log('File removed')
+        } catch(err) {
+            console.error('Something wrong happened removing the file', err)
+        }
+
+        res.send('image actualizada!');
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Create image",
+            message: "Ha ocurrido un error creando la imagen",
+            data: {},
+            error: error
+        });
+    }
+    
+});
+
 imgRouter.post('/img', fileUpload, (req, res) => {
 
     try {
