@@ -1,0 +1,342 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+   
+    background: rgb(238, 45, 255);
+              
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+     .header{
+         width: 100%;
+         height: 80px;
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+     }
+     .header__img{
+         width: 200px;
+         margin: 10px;
+         margin-left: 20px;
+         margin-top: 20px;
+     }
+     .Login{
+         
+         display: flex;
+         align-items: center;
+         justify-content: flex-start;
+         flex-direction: row;
+         padding: 0px 30px;
+         margin-left: 200px;
+         min-height: calc(100vh - 200px);
+     }
+     .Login__container{
+         box-shadow: 0px 0px 25px rgb(87, 28, 82);
+         border: 2px solid white;
+         border-radius: 10px;
+         background-color: white;
+         padding: 60px 68px 40px;
+         min-height: 550px;
+         width: 500px;
+         display: flex ;
+         justify-content: space-around;
+         flex-direction: column;
+         /*margin-left: 400px;*/
+     }
+     
+     .login{
+       margin-bottom: 20px;
+       margin-left: 60px;
+       font-size: 50px;
+       font-weight: bold;
+       color: rgb(49, 48, 46);
+     }
+     .profile.icon {
+      color:white;
+      position: absolute;
+      margin-left: -40px;
+      margin-top: 11px;
+      margin-bottom: 290px;
+      margin-right: 200px;
+      width: 22px;
+      height: 11px;
+      border-left: solid 1px currentColor;
+      border-right: solid 1px currentColor;
+      border-top: solid 1px currentColor;
+      border-bottom: solid 1px transparent;
+      border-radius: 6px 6px 0 0;
+    }
+    
+    .profile.icon:before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: -18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: solid 1px currentColor;
+    }
+    
+    .profile.icon2 {
+      color:white;
+      position: absolute;
+      margin-left: -45px;
+      margin-top: 11px;
+      margin-bottom: 145px;
+      margin-right: 200px;
+      width: 22px;
+      height: 11px;
+      border-left: solid 1px currentColor;
+      /*border-right: solid 1px currentColor;*/
+      border-top: solid 1px currentColor;
+      border-bottom: solid 1px transparent;
+      border-radius: 6px 6px 0 0;
+    }
+    
+    .profile.icon2:before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: -18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: solid 1px currentColor;
+    }
+    
+    .arrow-right.icon {
+      color:white;
+      position: absolute;
+      margin-left: -24px;
+      margin-top: -130px;
+      width: 14px;
+      height: 1px;
+      background-color: currentColor;
+    }
+    
+    .arrow-right.icon:before {
+      content: '';
+      position: absolute;
+      right: 1px;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      border-top: solid 1px currentColor;
+      border-right: solid 1px currentColor;
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+    }
+    
+    
+    .mail.icon {
+      color:white;
+      position: absolute;
+      margin-left: -45px;
+      margin-top: 4px;
+      width: 28px;
+      height: 21px;
+      border-radius: 1px;
+      border: solid 1px currentColor;
+    }
+    
+    .mail.icon:before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: -4px;
+      width: 1px;
+      height: 17px;
+      background-color: currentColor;
+      -webkit-transform-origin: bottom;
+              transform-origin: bottom;
+      -webkit-transform: rotate(-54deg);
+              transform: rotate(-54deg);
+    }
+    
+    .mail.icon:after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: -4px;
+      width: 1px;
+      height: 17px;
+      background-color: currentColor;
+      -webkit-transform-origin: bottom;
+              transform-origin: bottom;
+      -webkit-transform: rotate(54deg);
+              transform: rotate(54deg);
+    }
+    
+    .key2.icon {
+      color:white;
+      position: absolute;
+      margin-left: -30px;
+      margin-top: 150px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: solid 1px currentColor;
+      -webkit-transform: rotate(135deg);
+              transform: rotate(135deg);
+    }
+    
+    .key2.icon:before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 7px;
+      width: 15px;
+      height: 1px;
+      background-color: currentColor;
+    }
+    
+    .key2.icon:after {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0px;
+      width: 2px;
+      height: 6px;
+      border-left: solid 1px currentColor;
+      border-right: solid 1px currentColor;
+    }
+      
+    
+     .Login__container--form{
+         display: flex;
+         flex-direction: column;
+     }
+    .Login__container--inicia{
+      font-size: 14px;
+      margin-right: 0px;
+    }
+    .Login__container--inicia a{
+      font-size: 15px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0px 0px;
+      margin-inline-start: auto;
+    }
+    .Login__container--inicia a:hover{
+      text-decoration: underline;
+    }
+    
+    .input{
+      background-color:gainsboro;
+      /*border-left: 20px;
+      border-top: 20px;
+      border-right: 20px;
+      */
+      color: rgb(10, 7, 7);
+      border-radius: 10px;
+     border: 2px solid gainsboro;
+      font-family: 'Mulish', sans-serif;
+      font-size: 20px;
+      margin-bottom: 20px;
+      padding: 0px 20px;
+      outline: none;
+      height: 50px;
+    }
+    ::placeholder{
+      color: rgb(105, 105, 105);
+      text-align:left;
+    }
+    
+    
+    
+    
+    .button{
+      background-color: rgb(163,148,148);
+      border: solid rgb(163,148,148);
+      border-radius: 10px;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+      font-size: 25px;
+      font-weight: bold;
+      font-family: 'Mulish', sans-serif;
+      height: 50px;
+      width: 190px;
+      margin-left: 80px;
+      letter-spacing: 1px;
+     /* margin: 10px 0px;*/
+    }
+    .button:hover {
+      
+      box-shadow: 0 4px 16px rgb(70, 178, 231);
+      transition: all 0.2s ease;
+    }
+
+    .Registrate{
+      border: 2px solid rgb(134, 17, 125);
+      border-radius: 10px;
+      background-color: rgb(134, 17, 125);
+      padding: 60px 68px 40px;
+      min-height: 400px;
+      width: 450px;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      box-shadow: 0px 0px 25px rgb(70, 3, 78);
+     /* margin-left: 200px; */
+     }
+     .Registrate a{
+       color: white;
+       font-size: 30px;
+       margin-left: 25px;
+       width: 300px;
+       font-weight: bold;
+       margin-top: 80px;
+     }
+
+    .button-register{
+      background-color: rgb(163,148,148);
+      border: solid rgb(163,148,148);
+      border-radius: 10px;
+      color: rgb(0, 0, 0);
+      cursor: pointer;
+      font-size: 25px;
+      fill: rgb(0, 0, 0);
+      font-weight: bold;
+      font-family: 'Mulish', sans-serif;
+      height: 50px;
+      width: 190px;
+      margin-left: 65px;
+      letter-spacing: 1px;
+      margin-bottom: 100px;
+    }
+    .Button-registrate:hover {
+      
+      box-shadow: 0 4px 16px rgb(231, 113, 83);
+      transition: all 0.2s ease;
+    }
+    .footer{
+      display: flex;
+      align-items: center;
+      height: 100px;
+      width: 100%;
+    }
+    .footer a{
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      padding-left: 30px;
+      text-decoration: none;
+    }
+    .footer a:hover{
+      text-decoration: underline;
+    }
