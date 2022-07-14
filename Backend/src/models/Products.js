@@ -28,13 +28,7 @@ module.exports = Products = db.define('products', {
     categoria: {
         type: DataTypes.STRING
     },
-    type: {
+    image: {
         type: DataTypes.STRING
-    },
-    name: {
-        type: DataTypes.STRING
-    },
-    data: {
-        type: DataTypes.BLOB('long')
     }
 });

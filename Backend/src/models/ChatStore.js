@@ -1,22 +1,22 @@
 const db = require('../db');
 const { DataTypes } = require('sequelize');
 
-module.exports = Images = db.define('images', {
+module.exports = ChatStore = db.define("chatStore", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    id_user_add: {
+    id_user: {
         type: DataTypes.INTEGER
     },
-    type: {
-        type: DataTypes.STRING
+    id_receiver: {
+        type: DataTypes.INTEGER
     },
-    name: {
-        type: DataTypes.STRING
+    time: {
+        type: DataTypes.TIME
     },
-    data: {
-        type: DataTypes.BLOB('long')
+    message: {
+        type: DataTypes.STRING
     }
 })

@@ -1,5 +1,35 @@
+require('dotenv').config();
 const { Sequelize } = require("sequelize");
 
+const db = new Sequelize({
+  database: process.env.DB_DATABASE,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  dialectOptions: {
+    ssl: {
+      require: true, 
+      rejectUnauthorized: false 
+    }
+  },
+})
+
+module.exports = db;
+
+/*
+database: sucursalud
+username: 6kei1do38an5
+host: oo3b43ycnhys.us-east-4.psdb.cloud
+password: pscale_pw_9OBM5aqRRUbKsucrZ_hV-IZ2jdJJWK-PMsT6ckU8eYs
+
+DATABASE_URL='mysql://6kei1do38an5:pscale_pw_9OBM5aqRRUbKsucrZ_hV-IZ2jdJJWK-PMsT6ckU8eYs@oo3b43ycnhys.us-east-4.psdb.cloud/sucursalud?ssl={"rejectUnauthorized":true}'
+
+
+*/
+
+
+/*
 const db = new Sequelize({
   database: "d62n48u667qme",
   username: "cuskjmhngaikkc",
@@ -14,8 +44,7 @@ const db = new Sequelize({
     }
   },
 })
-
-module.exports = db;
+*/
 
 /*
 

@@ -22,16 +22,27 @@ module.exports = Tienda = db.define('store', {
     location: {
         type: DataTypes.STRING
     },
-    type_logo: {
-        type: DataTypes.STRING
-    },
-    name_logo: {
-        type: DataTypes.STRING
-    },
     logo: {
-        type: DataTypes.BLOB('long')
+        type: DataTypes.STRING
     }
 });
+
+module.exports = GalleryStore = db.define('galleryStore', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    id_sede: {
+        type: DataTypes.INTEGER
+    },
+    estado: {
+        type: DataTypes.STRING
+    },
+    url: {
+        type: DataTypes.STRING
+    }
+})
 
 module.exports = RedesSociales = db.define('social_networks', {
     id: {
