@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 
 export default function home(){ 
     
-    return (
+  return (
           <Container className="body">
 
             <section className="barraArriba">
