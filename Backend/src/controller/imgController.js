@@ -1,4 +1,4 @@
-const Images = require('../models/Images');
+const Images = require('../models/Gallery');
 const { Op } = require("sequelize");
 
 const getImages = async (req, res) => {

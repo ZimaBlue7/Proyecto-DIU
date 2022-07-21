@@ -1,4 +1,3 @@
-const Images = require('../models/Images');
 const { Router } = require('express');
 const imgRouter = Router();
 
