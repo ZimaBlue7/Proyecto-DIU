@@ -7,8 +7,19 @@ const getImages = async (req, res) => {
         const imgs = await Images.findAll({
             where: {
                 [Op.or]: [
-                    { id_user_add: null },
-                    { id_user_add: id }
+                    {   
+                        [Op.and]: [
+                            {
+                                id_user_add: null  
+                            },
+                            {
+                                id_product: null
+                            }
+                        ]
+                    },
+                    { 
+                        id_user_add: id 
+                    }
                 ]
             }
         })
@@ -40,6 +51,25 @@ const getImage = async (req, res) => {
     }
 }
 
+const getImageProduct = async (req, res) => {
+    try {
+        const id = req.params;
+
+        const images = await Images.findAll({
+            where:{
+                id_product: id
+            }
+        })
+
+        res.json({
+            images
+        })
+
+    } catch (error) {
+        
+    }
+}
+
 const deleteImg = async (req, res) => {
     try {
         const {id} = req.params;
@@ -61,8 +91,67 @@ const deleteImg = async (req, res) => {
     }
 }
 
+const addImg = async (req, res) => {
+    try {
+        const {
+            user,
+            estado,
+            img
+        } = req.body;
+
+        await Images.create({
+            id_user_add: user,
+            estado: estado,
+            url: img
+        });
+
+        res.json({
+            msg: "Imagen agregada con exito"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add image",
+            message: "Ha ocurrido un error agregado la imagen",
+            data: {},
+            error: error
+        });
+    }
+}
+
+const updateImg = async (req, res) => {
+    try {
+        const id = req.params;
+        const {
+            estado,
+            img
+        } = req.body;
+
+        const image = await Images.findByPk(id);
+
+        image.update({
+            estado: estado,
+            url: img
+        })
+
+        res.json({
+            msg: "Imagen actualizada"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Update image",
+            message: "Ha ocurrido un error actualizando la imagen",
+            data: {},
+            error: error
+        });
+    }
+}
+
 module.exports = {
     getImages,
     getImage,
+    addImg,
+    updateImg,
     deleteImg
 };

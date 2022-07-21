@@ -7,6 +7,9 @@ module.exports = Images = db.define('gallery', {
         primaryKey: true,
         autoIncrement: true
     },
+    id_product:{
+        type: DataTypes.INTEGER
+    },
     id_user_add: {
         type: DataTypes.INTEGER
     },
