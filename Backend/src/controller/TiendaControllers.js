@@ -1,4 +1,5 @@
-const Users = require('../models/Users');
+require('dotenv').config();
+
 const Tienda = require('../models/Tienda');
 const RedesSociales = require('../models/Tienda');
 const Telefonos = require('../models/Tienda');
@@ -32,7 +33,6 @@ const getInformacionTienda = async (req, res) => {
 
 const updateInfoTienda = async (req, res) => {
     try {
-        const {id} = req.params;
         const {
             about_us,
             history,
@@ -43,17 +43,11 @@ const updateInfoTienda = async (req, res) => {
         const authorization = req.get('authorization');
         let token = null;
 
-        const user = await Users.findByPk(id);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
-
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -94,6 +88,14 @@ const addRedSocial = async (req, res) => {
             link
         } = req.body;
 
+        RedesSociales.create({
+            red_social: redSocial,
+            link: link
+        })
+
+        return res.json({
+            message: "El enlace fue agregado con exito"
+        }) 
 
     } catch (error) {
         res.status(500).json({

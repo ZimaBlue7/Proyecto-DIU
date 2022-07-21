@@ -6,11 +6,12 @@ const db = new Sequelize({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   host: process.env.DB_HOST,
+  port: 5432,
   dialect: process.env.DB_DIALECT,
   dialectOptions: {
     ssl: {
-      require: true, 
-      rejectUnauthorized: false 
+      require: true, // This will help you. But you will see nwe error
+      rejectUnauthorized: false // This line will fix new error
     }
   },
 })
@@ -47,6 +48,20 @@ const db = new Sequelize({
 */
 
 /*
+
+const db = new Sequelize({
+  database: process.env.DB_DATABASE,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  dialectOptions: {
+    ssl: {
+      require: true, 
+      rejectUnauthorized: false 
+    }
+  },
+})
 
 const db = new Sequelize({
     database: "surcusalud",

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const Users = require('../models/Users');
 const Employees = require('../models/Employees')
 const bcrypt = require('bcrypt');
@@ -6,21 +8,14 @@ const Schedule = require('../models/Schedule');
 
 const getUsers = async(req, res) => {
     try {
-        const {id} = req.params;
         const authorization = req.get('authorization');
         let token = null;
-
-        const user = await Users.findByPk(id);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -85,21 +80,14 @@ const getUser = async(req, res) => {
 const getEmployees = async (req, res) => {
     try {
 
-        const {id} = req.params;
         const authorization = req.get('authorization');
         let token = null;
-
-        const user = await Users.findByPk(id);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -156,21 +144,15 @@ const getEmployees = async (req, res) => {
 const getSchedule = async (req, res) => {
     try {
 
-        const {id, idActor} = req.params;
+        const {id} = req.params;
         const authorization = req.get('authorization');
         let token = null;
-
-        const user = await Users.findByPk(idActor);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -212,21 +194,14 @@ const addEmpleado = async (req, res) => {
             cargo,
             sede
         } = req.body;
-        const {id} = req.params;
         const authorization = req.get('authorization');
         let token = null;
-
-        const userA = await Users.findByPk(id);
-
-        if( !userA ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -315,27 +290,21 @@ const createUser = async (req, res) => {
 const addSchedule = async (req, res) => {
     try {
 
-        const {idActor} = req.params;
         const {
             id_user,
             hora_inicio,
             hora_fin,
             fecha
         } = require.body;
+
         const authorization = req.get('authorization');
         let token = null;
-
-        const user = await Users.findByPk(idActor);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -391,7 +360,7 @@ const updateUser = async (req, res) => {
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -421,7 +390,7 @@ const updateUser = async (req, res) => {
 const updateEmployees = async (req, res) => {
     try {
         
-        const {id, idActor} = req.params;
+        const {id} = req.params;
         const {
             cargo,
             sede
@@ -430,17 +399,11 @@ const updateEmployees = async (req, res) => {
         const authorization = req.get('authorization');
         let token = null;
 
-        const user = await Users.findByPk(idActor);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
-
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -477,7 +440,7 @@ const updateEmployees = async (req, res) => {
 const updateSchedule = async (req, res) => {
     try {
         
-        const {id, idActor} = req.params;
+        const {id} = req.params;
         const {
             id_user,
             hora_inicio,
@@ -488,17 +451,11 @@ const updateSchedule = async (req, res) => {
         const authorization = req.get('authorization');
         let token = null;
 
-        const user = await Users.findByPk(idActor);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
-
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, user.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -536,21 +493,15 @@ const updateSchedule = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const {id, idActor} = req.params;
+        const {id} = req.params;
         const authorization = req.get('authorization');
         let token = null;
-
-        const userA = await Users.findByPk(idActor);
-
-        if( !userA ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
 
         if( authorization && authorization.toLowerCase().startsWith('bearer') ){
             token = authorization.substring(7);
         }
 
-        const decodedToken = jwt.verify(token, userA.password);
+        const decodedToken = jwt.verify(token, process.env.clave);
 
         if( !token || !decodedToken.rol ){
             return res.json({ error: 'token missing or invalid' });
@@ -628,7 +579,7 @@ const verificarUser = async (req, res) => {
                     rol: user[0].rol,
                 }
     
-                const token = jwt.sign(userForToken, password);
+                const token = jwt.sign(userForToken, process.env.clave);
 
                 res.json({
                     id: user[0].id,
@@ -706,6 +657,8 @@ const verificarUser = async (req, res) => {
 
 const recoverPassword = async (req, res) => {
     try {
+
+        
         
     } catch (error) {
         res.status(500).json({
