@@ -109,8 +109,13 @@ export default function home(){
 </div>
             </section>
 
+            <div class="d-flex justify-content-evenly">
+              <h1>Ultimos productos agregados <span class="badge bg-secondary">!!</span>
+              </h1>
+              </div>
+
             <section className='cuadro2'> 
-            
+            a
             </section>
 
             <section>
