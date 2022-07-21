@@ -66,7 +66,12 @@ const getImageProduct = async (req, res) => {
         })
 
     } catch (error) {
-        
+        res.status(500).json({
+            typeError: "Get image products",
+            message: "Ha ocurrido un error obteniedo las imagenes de los productos",
+            data: {},
+            error: error
+        });
     }
 }
 
@@ -119,6 +124,32 @@ const addImg = async (req, res) => {
     }
 }
 
+const addImgProduct = async (req, res) => {
+    try {
+        const {
+            user,
+            product,
+            estado,
+            img
+        } = req.body;
+
+        Images.create({
+            id_user_add: user,
+            id_product: product,
+            estado: estado,
+            url: img
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add image product",
+            message: "Ha ocurrido un error agregado la imagen",
+            data: {},
+            error: error
+        });
+    }
+}
+
 const updateImg = async (req, res) => {
     try {
         const id = req.params;
@@ -151,7 +182,9 @@ const updateImg = async (req, res) => {
 module.exports = {
     getImages,
     getImage,
+    getImageProduct,
     addImg,
+    addImgProduct,
     updateImg,
     deleteImg
 };

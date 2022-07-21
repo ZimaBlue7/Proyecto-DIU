@@ -1,0 +1,4 @@
+export const VALIDAR_USUARIO = "VALIDAR_USUARIO";
+export const REGISTRAR_USUARIO = "REGISTRAR_USUARIO";
+export const GET_USUARIO = "GET_USUARIOS";
+export const GET_AVATAR = "GET_AVATAR";

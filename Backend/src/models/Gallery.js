@@ -8,7 +8,8 @@ module.exports = Images = db.define('gallery', {
         autoIncrement: true
     },
     id_product:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: null
     },
     id_user_add: {
         type: DataTypes.INTEGER
