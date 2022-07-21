@@ -3,9 +3,9 @@ import React, { Component, useState, useContext, useEffect } from "react";
 import Container from "@mui/material/Container";
 
 import '../../Styles/Home/home.css';
-import imagenes from '../../assets/imagenes.js'; 
+import imagenes from '../../Assets/imagenes'; 
 
-import Footer from "./Footer";
+import Footer from "../General/Footer";
 
 
 export default function home(){ 
