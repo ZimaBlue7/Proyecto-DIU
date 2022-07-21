@@ -1,6 +1,6 @@
 .viewProduct{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
 
 .contInfo{
     width: 500px;
-    height: 400px;
+    /*height: 400px;*/
     padding: 10px;
     display: flex;
     justify-content: flex-start;
@@ -171,4 +171,128 @@
 .contImg .imgPrincipal .contUnidDisp p span{
     color: rgb(111, 0, 255);
     font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+    .contImg {
+        width: calc(100% - 510px);
+    }
+    .contInfo{
+        padding: 0px;
+    }
+}
+
+@media (max-width: 1018px) {
+
+    .contImg .masFotos{
+        width: 100px;
+    }
+
+    .contImg .masFotos button {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 990px){
+
+    .contImg .imgPrincipal{
+        align-items: flex-start;
+    }
+
+    .contImg .imgPrincipal .contUnidDisp {
+        bottom: 100px;
+    }
+
+
+    .contImg {
+        width: calc(100% - 410px);
+    }
+    .contInfo{
+        width: 400px;
+    }
+}
+
+@media (max-width: 824px) {
+    .viewProduct {
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+    }
+    .contInfo{
+        margin: 10px 0;
+    }
+
+    .contImg{
+        width: 80%;
+        margin: 20px 0;
+    }
+
+    .contImg .imgPrincipal .contUnidDisp {
+        bottom: 10px;
+    }
+
+}
+
+@media (max-width: 725px) {
+    
+    .contImg{
+        width: 90%;
+    }
+
+}
+
+@media (max-width: 630px) {
+    
+    .contImg{
+        width: 98%;
+    }
+
+}
+
+@media (max-width: 550px) {
+    
+    .contImg .imgPrincipal .contUnidDisp {
+        bottom: 100px;
+    }
+
+}
+
+@media (max-width: 460px) {
+
+    .contImg{
+        flex-direction: column-reverse;
+        height: auto;
+
+    }
+    
+    .contImg .imgPrincipal{
+        width: 95%;
+        height: 350px;
+    }
+
+    .contImg .imgPrincipal .contUnidDisp {
+        bottom: 20px;
+    }
+
+    .contImg .masFotos{
+        width: 95%;
+        height: 100px;
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+
+    .contImg .masFotos button{
+        margin: 0 5px;
+    }
+
+}
+
+@media (max-width: 380px){
+    .contInfo{
+        width: 100%;
+    }
+
+    .contInfo .contText h1{
+        font-size: 27px;
+    }
 }
