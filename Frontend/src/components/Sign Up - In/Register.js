@@ -5,8 +5,7 @@ import '../../Styles/Sign Up - In/Register.css';
 import { createContext } from "react";
 const Register = () => {
 
-    const userContext = createContext();
-  	const {verificarAutenticada} = userContext;
+   
 
     const navigate = useNavigate();
     
@@ -17,19 +16,7 @@ const Register = () => {
         password_:''
     })
 
-    useEffect(() => {
-
-		const elem = window.localStorage.getItem('usuario')
-        const dato = elem ? JSON.parse(elem) : null
-
-		if(dato){
-			verificarAutenticada();
-			navigate("/dashboard");
-			return <></>
-		}
-
-	}, [])
-
+    
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
