@@ -20,13 +20,13 @@ function NabvarP() {
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">Home</a>
+            <a className="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" href="#">Productos</a>
+            <a className="nav-link active" href="/Menu">Productos</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" href="#">Contacto</a>
+            <a className="nav-link active" href="/SoporteCliente">Contacto</a>
           </li>
           
       </ul>

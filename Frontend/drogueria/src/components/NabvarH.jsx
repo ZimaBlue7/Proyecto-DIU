@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Styles/Home/home.css';
 import imagenes from '../assets/imagenes.js'; 
+import {BrowserRouter as Router,Link} from "react-router-dom";
 
 function NabvarH() {
   return (
@@ -20,13 +21,13 @@ function NabvarH() {
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">Home</a>
+            <a className="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" href="#">Productos</a>
+            <a className="nav-link active" href="/Menu">Productos</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" href="#">Contacto</a>
+            <a className="nav-link active" href="/SoporteCliente">Contacto</a>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,12 +43,13 @@ function NabvarH() {
     </div>
   </div>
   <form class="container-fluid justify-content-end">
-    <button class="btn btn-outline-primary me-1" type="button">Registrarse </button>
-    <button class="btn btn-outline-success me-2" type="button">Iniciar Sesion </button>
+    <a href="/Register"><button class="btn btn-outline-primary me-1" type="button">Registrarse </button> </a>
+    <a href="/Login"><button class="btn btn-outline-success me-2" type="button">Iniciar Sesion </button></a>
+    
+    
   </form>
 </nav>
-              
-            </section>
+</section>
   );
 }
 
