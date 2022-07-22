@@ -46,7 +46,7 @@ const Register = () => {
     return (
         <div>
              <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet"></link>
-   <body className='body'>
+   <body className='bodyR'>
    <header className="header">
        
     </header>
