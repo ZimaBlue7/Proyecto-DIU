@@ -15,7 +15,7 @@ const UserState = (props) => {
     const validarUsuario = async (datos) => {
         try {
 
-            const res = await axios.post('http://localhost:3000/autenticarUser/', datos );
+            const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
             
             dispatch({
                 type: 'VALIDAR_USUARIO',
@@ -29,12 +29,13 @@ const UserState = (props) => {
 
     const registrarUsuario = async (datos) => {
         try {
-            const res = await axios.post('http://localhost:3000/user', datos);
+            console.log(datos)
+            const res = await axios.post('https://surcusalud.herokuapp.com/user/', datos);
             console.log(res)
-            dispatch({
+            /*dispatch({
                 type: 'REGISTRAR_USUARIO',
                 payload: res.data
-            })
+            })*/
         } catch (error) {
             console.log(error)
         }

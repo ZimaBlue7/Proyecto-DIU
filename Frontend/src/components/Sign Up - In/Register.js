@@ -14,18 +14,20 @@ const Register = () => {
     const navigate = useNavigate();
     const [register, setRegister] = useState({
         nombre:'',
-        lastName:'',
-        email:'',
-        password_:''
+        apellido:'',
+        correo:'',
+        password:'',
+        fecha_nacimiento:"",
+        telefono:""
     })
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
         
         registrarUsuario(register)
-        console.log(datosUser)
+        //console.log(register)
 
-        if( datosUser ){
+        /*if( datosUser ){
             Swal.fire({
                 icon: 'success',
                 title: 'Usuario Creado Con exito',
@@ -42,7 +44,7 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 3000,
             })
-        }
+        }*/
                 
     };
 
@@ -74,9 +76,9 @@ const Register = () => {
        <div className="key2 icon"></div>
        <form className="Register__container--form" onSubmit={handleSubmit}>
        <input name='nombre' onChange={handleChange}  className="input" type="text" placeholder="Nombre" required></input>
-            <input name='lastName'  onChange={handleChange} className="input" type="text" placeholder="Apellido" required></input>
-            <input name='email'  onChange={handleChange} className="input" type="email" placeholder="Correo" required></input>
-            <input name='password_'  onChange={handleChange} className="input" type="password" placeholder="Contraseña" required></input>
+            <input name='apellido'  onChange={handleChange} className="input" type="text" placeholder="Apellido" required></input>
+            <input name='correo'  onChange={handleChange} className="input" type="correo" placeholder="Correo" required></input>
+            <input name='password'  onChange={handleChange} className="input" type="password" placeholder="Contraseña" required></input>
             <button className="button">Registrarme</button>
        </form>
        
