@@ -1,0 +1,108 @@
+.bodyCarrito{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bodyCarrito h1{
+    width: 90%;
+    font-weight: 700;
+    text-align: start;
+}
+
+.contListWish {
+    width: 90%;
+    margin-top: 20px;
+    height: 80vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.contListWish .contListProduct{
+    width: calc(100% - 320px);
+    height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    padding: 10px;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.contListWish .contListProduct .contTabla{
+    width: 100%;
+    margin-top: 10px;
+    height: calc(100% - 50px);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.contListWish .contListProduct .contTitle, .contListWish .contFactura .contTitle{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contListWish .contListProduct .contTitle button, .contListWish .contFactura .contTitle button{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    background: rgb(202, 202, 248);
+}
+
+.contListWish .contListProduct .contTitle button:hover, .contListWish .contFactura .contTitle button:hover{
+    box-shadow: 0px 0px 5px rgb(32, 32, 32);
+    background: rgb(0, 140, 255);
+    color: white;
+}
+
+.contListWish .contFactura {
+    width: 300px;
+    height: 70vh;
+    padding: 10px;
+    border-radius: 20px;
+    background: orange;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.contListWish .contListProduct.active{
+    min-height: 0px;
+    height: 50px;
+    padding-top: 5px;
+}
+
+.contListWish .contFactura.active{
+    border-radius: 10px;
+    min-height: 0px;
+    padding-top: 5px;
+    height: 50px;
+}
+
+.contListWish .contFactura .contDatos{
+    width: 100%;
+    height: calc(100% - 90px);
+}
+
+.contListWish .contFactura .contButton{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.contListWish .contFactura .contButton button{
+    padding: 5px 20px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+}

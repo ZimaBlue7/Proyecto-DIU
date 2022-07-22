@@ -6,54 +6,44 @@ import '../../Styles/Sign Up - In/Login.css';
 import { createContext } from "react";
 const Login = () => {
     
-
-   
-
   const navigate = useNavigate();
-
   const [body, setBody] = useState({ usuario: '', password: '' })
   
-
- 
   const handleChange = (e) => {
-      setBody({...body,[e.target.name]: e.target.value});
+    setBody({...body,[e.target.name]: e.target.value});
   }
 
   const handleSubmit = async (e) =>{
 
-      e.preventDefault();
+    e.preventDefault();
+    try{
 
-      try{
+        const res = await axios.post('', body); 
+        console.log(res.data[0])
+        if( res.data.length > 0 ){
 
-          const res = await axios.post('', body); 
-          console.log(res.data[0])
-          if( res.data.length > 0 ){
+            Swal.fire({
+                title: 'Verificando informacion',
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                }
+            }).then(() => {
 
-              Swal.fire({
-                  title: 'Verificando informacion',
-                  timer: 1000,
-                  timerProgressBar: true,
-                  didOpen: () => {
-                      Swal.showLoading()
-                  }
-              }).then(() => {
-
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'Bienvenido a SucurSalud '+ res.data[0].nombre,
-                      showConfirmButton: false,
-                      timer: 3000,
-                  }).then(function() {
-                      
-                      navigate("/dashboard");
-                  });
-                      
-              })
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Bienvenido a SucurSalud '+ res.data[0].nombre,
+                    showConfirmButton: false,
+                    timer: 3000,
+                }).then(function() {
+                    navigate("/dashboard");
+                });      
+            })
               
-          }
-          else{
-
-              Swal.fire({
+        }
+        else{
+            Swal.fire({
                   title: 'Verificando informacion',
                   timer: 1000,
                   timerProgressBar: true,
@@ -66,17 +56,15 @@ const Login = () => {
                       title: 'No estás registrado',
                       showConfirmButton: false,
                       timer: 2000,
-                  });
-              })
+                });
+            })
               
-          }
-                  
-
-      }catch(e){
-          console.log(e)
-      }
-      
-  };
+        }
+            
+    }catch(e){
+        console.log(e)
+    }      
+};
 
     return (
         <div>

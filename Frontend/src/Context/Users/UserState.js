@@ -19,4 +19,4 @@ const UserState = (props) => {
     )
 }
 
-export default UserState
+export default UserState;

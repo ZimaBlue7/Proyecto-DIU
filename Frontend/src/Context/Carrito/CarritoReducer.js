@@ -1,7 +1,7 @@
 import {
 } from '../type';
 
-const ProductReducer = (state, action) => {
+const CarritoReducer = (state, action) => {
     const {payload, type} = action
 
     switch(type){
@@ -11,4 +11,4 @@ const ProductReducer = (state, action) => {
 
 }
 
-export default ProductReducer;
+export default CarritoReducer;

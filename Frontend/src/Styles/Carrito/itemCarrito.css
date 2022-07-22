@@ -1,0 +1,55 @@
+.bodyItemProduct{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid gray;
+}
+
+.bodyItemProduct img{
+    width: 100px;
+    height: 100px;
+    flex: none;
+    margin-right: 10px;
+}
+
+.bodyItemProduct .contDatoProduct{
+    width: calc(100% - 100px);
+    padding: 0 10px;
+}
+
+.bodyItemProduct .contDatoProduct p{
+    margin: 0;
+    text-align: end;
+}
+
+.bodyItemProduct .contDatoProduct .contButtonItem{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyItemProduct .contDatoProduct .contButtonItem button{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: 0 5px;
+}
+
+.bodyItemProduct .contDatoProduct .contButtonItem .btnInc{
+    background: rgb(190, 190, 243);
+}
+
+.bodyItemProduct .contDatoProduct .contButtonItem .btnDec{
+    background: rgb(149, 238, 149);
+}
+
+.bodyItemProduct .contDatoProduct .contButtonItem .btnDelete{
+    background: rgb(241, 101, 101);
+}
