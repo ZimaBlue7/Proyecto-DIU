@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import '../../Styles/Carrito/carrito.css'
 import ItemProduct from './ItemProduct';
+import NabvarH from '../General/NabvarH'
 
 export default function Carrito() {
 
@@ -10,6 +11,9 @@ export default function Carrito() {
 
   return (
     <div className='bodyCarrito'>
+        <div>
+            <NabvarH/>
+        </div>
         <h1>CARRITO DE COMPRAS</h1>
         <div className='contListWish'>
             <div className={activeListProduct ? 'contListProduct active' : 'contListProduct' }>

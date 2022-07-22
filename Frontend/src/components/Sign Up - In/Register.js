@@ -79,7 +79,7 @@ const Register = () => {
     </main>
    </body>
 
-        </div>
+    </div>
     )
 }
 
