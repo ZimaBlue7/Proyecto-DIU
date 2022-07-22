@@ -5,6 +5,7 @@ import lora from './img/lora.jpg'
 import ibupro from './img/ibupro.jpg'
 import aceta from './img/aceta.jpg'
 import perfil from './img/perfil.png'
+import photomale from './img/photomale.jpg'
 
 export default {
     "Logo": LogoSucur,
@@ -13,5 +14,6 @@ export default {
     "lora" : lora,
     "aceta": aceta,
     "ibupro": ibupro,
-    "perfil":perfil
+    "perfil":perfil,
+    "photomale":photomale
 };
