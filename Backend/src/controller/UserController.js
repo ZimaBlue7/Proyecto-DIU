@@ -272,10 +272,24 @@ const createUser = async (req, res) => {
             rol: "client"
         })
 
+        const userForToken = {
+            id: user.id,
+            nombre: user.nombre + " " + user.apellido,
+            email: user.correo,
+            rol: user.rol,
+        }
+
+        const token = jwt.sign(userForToken, process.env.clave);
+
         res.json({
-            mjs: "Usuario creado",
-            usuario: user
-        })
+            id: user.id,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            telefono: user.telefono,
+            correo: user.correo,
+            rol: user.rol,
+            token: token
+        });
 
     } catch (error) {
         res.status(500).json({
@@ -603,7 +617,7 @@ const verificarUser = async (req, res) => {
                     rol: user[0].rol,
                 }
     
-                const token = jwt.sign(userForToken, password);
+                const token = jwt.sign(userForToken, process.env.clave);
 
                 res.json({
                     id: user[0].id,
@@ -623,7 +637,7 @@ const verificarUser = async (req, res) => {
                     rol: user[0].rol,
                 }
     
-                const token = jwt.sign(userForToken, password);
+                const token = jwt.sign(userForToken, process.env.clave);
 
                 res.json({
                     id: user[0].id,

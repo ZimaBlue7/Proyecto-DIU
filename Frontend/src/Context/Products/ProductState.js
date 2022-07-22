@@ -6,13 +6,30 @@ import ProductReducer from './ProductReducer'
 
 const ProductState = (props) => {
     const inicialState = {
+        listProduct: []
     }
 
     const [state, dispatch] = useReducer(ProductReducer, inicialState)
 
+
+    const getProduct = async () => {
+        try {
+            const res = await axios.get("https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/prodcutSurcusalud");
+            
+            dispatch({
+                type: 'GET_PRODUCT',
+                payload: res.data
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <ProductContext.Provider value={{
-           
+            listProduct: state.listProduct,
+            getProduct
         }}>
             {props.children}
         </ProductContext.Provider>

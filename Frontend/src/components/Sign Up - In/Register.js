@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import '../../Styles/Sign Up - In/Register.css';
 import { createContext } from "react";
+
+import UserContext from '../../Context/Users/UserContext';
+
 const Register = () => {
 
-   
+    const userContext = useContext(UserContext);
+    const { registrarUsuario, datosUser } = userContext;
 
     const navigate = useNavigate();
-    
     const [register, setRegister] = useState({
         nombre:'',
         lastName:'',
@@ -16,27 +19,31 @@ const Register = () => {
         password_:''
     })
 
-    
-
     const handleSubmit = async (e) =>{
         e.preventDefault();
         
-   const res =   await  fetch('http://localhost:5000/signUp', {
-            method: 'POST',
-            body:JSON.stringify(register),
-            headers: {'Content-Type': 'application/json' }
-        })
-        const data = await res.json()
-        console.log(data)
+        registrarUsuario(register)
+        console.log(datosUser)
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Usuario Creado Con exito',
-            showConfirmButton: false,
-            timer: 3000,
-        }).then(function() {
-            navigate("/login");
-        });
+        if( datosUser ){
+            Swal.fire({
+                icon: 'success',
+                title: 'Usuario Creado Con exito',
+                showConfirmButton: false,
+                timer: 3000,
+            }).then(function() {
+                navigate("/");
+            });
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'El usuario no fue creado',
+                showConfirmButton: false,
+                timer: 3000,
+            })
+        }
+                
     };
 
     const handleChange = (e) =>{

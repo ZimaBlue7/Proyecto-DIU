@@ -1,10 +1,22 @@
 import {
+    VALIDAR_USUARIO,
+    REGISTRAR_USUARIO
 } from '../type';
 
 const UserReducer = (state, action) => {
     const {payload, type} = action
 
     switch(type){
+        case VALIDAR_USUARIO:
+            return {
+                ...state,
+                datosUser: payload
+            }
+        case REGISTRAR_USUARIO:
+            return {
+                ...state,
+                datosUser: payload
+            }
         default:
             return state;
     }

@@ -4,8 +4,15 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import '../../Styles/Sign Up - In/Login.css';
 import { createContext } from "react";
+
+import UserContext from '../../Context/Users/UserContext';
+
 const Login = () => {
     
+
+    const userContext = useContext(UserContext);
+    const { validarUsuario, datosUser } = userContext;
+
   const navigate = useNavigate();
   const [body, setBody] = useState({ usuario: '', password: '' })
   
@@ -18,10 +25,10 @@ const Login = () => {
     e.preventDefault();
     try{
 
-        const res = await axios.post('', body); 
-        console.log(res.data[0])
-        if( res.data.length > 0 ){
-
+        await validarUsuario(body); 
+        console.log(datosUser)
+        if( datosUser ){
+ 
             Swal.fire({
                 title: 'Verificando informacion',
                 timer: 1000,
@@ -33,11 +40,11 @@ const Login = () => {
 
                 Swal.fire({
                     icon: 'success',
-                    title: 'Bienvenido a SucurSalud '+ res.data[0].nombre,
+                    title: 'Bienvenido a SucurSalud '+ datosUser.nombre,
                     showConfirmButton: false,
                     timer: 3000,
                 }).then(function() {
-                    navigate("/dashboard");
+                    navigate("/");
                 });      
             })
               
