@@ -12,11 +12,11 @@ export default class Checkout extends Component {
         });
         
     let data = {
-          name: "Crema de dientes",
-          description: "Crema de dientes",
+          name: "Gemiled",
+          description: "Pproductos para mejorar dolores",
           currency: "cop",
-          amount: '8000',
-          tax_base: '7000',
+          amount: '10000',
+          tax_base: '9000',
           tax:'1000',
           country: "co",
           lang: "en",

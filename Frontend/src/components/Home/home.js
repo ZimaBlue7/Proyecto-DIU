@@ -45,23 +45,23 @@ export default function home(){
         </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+          <img src={imagenes.papel} class="d-block w-100" alt="..."/>
             <div class="carousel-caption d-none d-md-block">
-              <h5>Producto</h5>
+              <h5>Papel Scott</h5>
                 <p>Ingresa a el apartado de productos para conocer más</p>
             </div>
         </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+        <img src={imagenes.pañales} class="d-block w-100" alt="..."/>
           <div class="carousel-caption d-none d-md-block">
-            <h5>Producto</h5>
+            <h5>Pañales</h5>
             <p>Some Ingresa a el apartado de productos para conocer más</p>
           </div>
       </div>
       <div class="carousel-item">
-        <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+        <img src={imagenes.yodora} class="d-block w-100" alt="..."/>
           <div class="carousel-caption d-none d-md-block">
-            <h5>Producto</h5>
+            <h5>Yodora</h5>
             <p>Ingresa a el apartado de productos para conocer más</p>
           </div>
       </div>
@@ -90,23 +90,23 @@ export default function home(){
         </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+          <img src={imagenes.listerine} class="d-block w-100" alt="..."/>
             <div class="carousel-caption d-none d-md-block">
-              <h5>Producto</h5>
+              <h5>listerine</h5>
                 <p>Ingresa al apartado de productos para conocer más...</p>
             </div>
         </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+        <img src={imagenes.raid} class="d-block w-100" alt="..."/>
           <div class="carousel-caption d-none d-md-block">
-            <h5>Producto</h5>
+            <h5>Raid</h5>
               <p>Ingresa al apartado de productos para conocer más...</p>
           </div>
       </div>
       <div class="carousel-item">
-        <img src={imagenes.carrusel} class="d-block w-100" alt="..."/>
+        <img src={imagenes.benetCalcio} class="d-block w-100" alt="..."/>
           <div class="carousel-caption d-none d-md-block">
-            <h5>Producto</h5>
+            <h5>Benet + calcio</h5>
               <p>Ingresa al apartado de productos para conocer más...</p>
           </div>
       </div>
