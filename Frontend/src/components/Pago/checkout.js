@@ -12,11 +12,11 @@ export default class Checkout extends Component {
         });
         
     let data = {
-          name: "Crema de dientes",
-          description: "Crema de dientes",
+          name: this.props.dato.nombre,
+          description: this.props.dato.descripcion,
           currency: "cop",
-          amount: '8000',
-          tax_base: '7000',
+          amount: (this.props.dato.precio * this.props.dato.cantidad) + 1000,
+          tax_base: this.props.dato.precio * this.props.dato.cantidad,
           tax:'1000',
           country: "co",
           lang: "en",

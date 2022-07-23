@@ -1,5 +1,5 @@
 import React, {useEffect, useState,useContext} from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import images from '../../Assets/imagenes.js'
 import Swal from 'sweetalert2';
 import defaultImg from '../../Assets/farmacia.png'
@@ -20,7 +20,7 @@ const Menu = () => {
 
   useEffect(() => {
     getProduct()    
-  }, [])
+  })
 
   return (
     <div>
@@ -29,37 +29,37 @@ const Menu = () => {
     </div>
       <body className='bodyP'>
         <main>
-    <section className='container'>
-  <div class="row row-cols-1 row-cols-md-3">
-    {
-      listProduct
-      ? listProduct.map( item => {
-        return <div class="col">
-          <div class="card" style={{width: "250px", height: "330px"}}>
-            <img src={defaultImg} class="card-img-top" alt="..."/>
-            <div class="card-body">
-              <h5  class="card-title"><a className='name' href="">{item.nombre}</a></h5>
-              <p class="card-text">{item.precio}</p>
-              <button onClick={() => {
-                console.log(item)
-                addProduct(item)
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Agregado con exito',
-                  showConfirmButton: false,
-                  timer: 3000,
-                })
-              }} class="btn btn-success">Agregar al carrito</button>
+          <section className='container'>
+            <div class="row row-cols-1 row-cols-md-3">
+              {
+                listProduct && listProduct.length > 0
+                ? listProduct.map( item => {
+                  return <div class="col">
+                    <div class="card" style={{width: "250px", height: "330px"}}>
+                      <img src={defaultImg} class="card-img-top" alt="..."/>
+                      <div class="card-body"> 
+                        <h5  class="card-title"><Link className='name' to={'/menu/'+item.id}>{item.nombre}</Link></h5>
+                        <p class="card-text">{item.precio}</p>
+                        <button onClick={() => {
+                          console.log(item)
+                          addProduct(item)
+                          Swal.fire({
+                            icon: 'success',
+                            title: 'Agregado con exito',
+                            showConfirmButton: false,
+                            timer: 3000,
+                          })
+                        }} class="btn btn-success">Agregar al carrito</button>
+                      </div>
+                    </div>
+                  </div>
+                } )
+                : <> </>
+              }
             </div>
-          </div>
-        </div>
-      } )
-      : ''
-    }
-</div>
-</section>
-    </main>
-    </body>
+          </section>
+        </main>
+      </body>
     <section className='futer'>
       <Footer/> 
     </section>

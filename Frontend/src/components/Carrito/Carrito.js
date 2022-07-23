@@ -5,11 +5,14 @@ import ItemProduct from './ItemProduct';
 import Navegation from '../General/Navegation';
 
 import CarritoContext from '../../Context/Carrito/CarritoContext'
+import Succes from '../Pago/Succes';
 
 export default function Carrito() {
 
     const [activeListProduct, setActiveLP] = useState(false);
     const [activeFactura, setActiveF] = useState(false);
+
+    const [pagar, setPagar] = useState(false)
 
     const carritoContext = useContext(CarritoContext);
     const {listProduct, addProduct, updateProduct, deleteProduct} = carritoContext;
@@ -30,6 +33,8 @@ export default function Carrito() {
         setTotal(totalC)
         
     }
+
+    
 
   return (
     <div className='bodyCarrito'>
@@ -89,7 +94,10 @@ export default function Carrito() {
                     }
                 </div>
                 <div className='contButton'>
-                    <button>REALIZAR COMPRA</button>
+                    <Succes dato = {listProduct[0]} />
+                    {/*<button onClick={() => {
+                        setPagar(!pagar)
+                    }}>REALIZAR COMPRA</button>*/}
                 </div>
             </div>
         </div>

@@ -19,7 +19,8 @@ const CarritoReducer = (state, action) => {
                         nombre: payload.nombre,
                         precio: payload.precio,
                         estado: payload.estado,
-                        categoria: payload.categoria,
+                        categoria: payload.categoria,                        
+                        descripcion: payload.descripcion,
                         image: payload.image,
                         cantidad: 1
                     }

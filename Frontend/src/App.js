@@ -15,6 +15,7 @@ import Carrito from "./components/Carrito/Carrito";
 import ViewProduct from './components/Menu/ViewProduct'
 import Menu from "./components/Menu/Menu";
 import NotFound from "./components/General/NotFound";
+import Succes from './components/Pago/Succes'
 
 function App() {
   return (
@@ -29,8 +30,10 @@ function App() {
               <Route path='/Register' element={<Register/>}/> 
               <Route path='/carrito' element={<Carrito/>}/>             
               <Route path='/menu/' element={<Menu/>}/> 
-              <Route path='/menu/:id' element={<ViewProduct/>}/> 
+              <Route path='/menu/:idproduct' element={<ViewProduct/>}/> 
               <Route path='/notfound' element={<NotFound/>}/> 
+              
+              <Route path='/pago' element={<Succes/>}/> 
             </Routes>
           </Router>
         </CarritoState>
