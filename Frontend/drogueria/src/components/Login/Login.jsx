@@ -45,7 +45,7 @@ const Login = () => {
                       timer: 3000,
                   }).then(function() {
                       
-                      navigate("/dashboard");
+                      navigate("/home");
                   });
                       
               })
