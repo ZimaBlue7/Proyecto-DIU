@@ -40,7 +40,7 @@ function NabvarP() {
     <li><a class="dropdown-item" href="#">Ayuda</a></li>
     <li><a class="dropdown-item" href="#">Preferencias</a></li>
     <li><hr class="dropdown-divider"/></li>
-    <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+    <li><a class="dropdown-item" href="/">Cerrar Sesion</a></li>
   </ul>
 </div>
   </div>
