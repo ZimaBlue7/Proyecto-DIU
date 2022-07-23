@@ -1,6 +1,7 @@
 import {
     VALIDAR_USUARIO,
-    REGISTRAR_USUARIO
+    REGISTRAR_USUARIO,
+    ERROR_VALIDAION
 } from '../type';
 
 const UserReducer = (state, action) => {
@@ -17,6 +18,11 @@ const UserReducer = (state, action) => {
                 ...state,
                 datosUser: payload
             }
+        case ERROR_VALIDAION:
+           return {
+                ...state,
+                datosUser: payload
+           } 
         default:
             return state;
     }

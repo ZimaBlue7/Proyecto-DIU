@@ -1,0 +1,105 @@
+.bodyNavegacion{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.contNavegacion{
+    position: relative;
+    width: 93%;
+    height: 40px;
+    background: rgb(17, 235, 188);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.contNavegacion .logo{
+    height: 35px;
+}
+
+.contNavegacion .contLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contNavegacion ul{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-right: 30px;
+}
+
+.contNavegacion ul li{
+    height: 40px;
+    margin: 0 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contNavegacion ul li .link{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.contNavegacion ul li .link ion-icon{
+    font-size: 25px;
+}
+
+
+.contAvatar{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    right: -30px;
+    top: 10px;
+}
+
+.contAvatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contBtnRegLo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnLogin{
+    border: 0.5px solid rgb(255 106 0);
+    color: rgb(255 106 0)
+}
+
+.btnRegister{
+    border: 0.5px solid rgb(0, 68, 255);
+    color: rgb(0, 68, 255)
+}
+
+.contBtnRegLo button{
+    padding: 1px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+

@@ -3,18 +3,28 @@ import React from 'react'
 import '../../Styles/Carrito/itemCarrito.css'
 import fototest from '../../Assets/img/aceta.jpg'
 
-export default function ItemProduct() {
+import defaultImg from '../../Assets/farmacia.png'
+
+export default function ItemProduct(props) {
   return (
     <div className='bodyItemProduct'>
 
-        <img src={fototest} alt=''></img>
+        <img src={defaultImg} alt=''></img>
         <div className='contDatoProduct'>
-            <h4>Nombre Product</h4>
-            <p>20 x $1000und</p>
+            <h4>{props.dato.id + " - " + props.dato.nombre}</h4>
+            <p>{ props.dato.cantidad + " x " + props.dato.precio + "und"  }</p>
             <div className='contButtonItem'>
-                <button className='btnInc'>+</button>
-                <button className='btnDelete'><ion-icon name="trash-outline"></ion-icon></button>
-                <button className='btnDec'>-</button>
+                <button onClick={() => {
+                  props.dato.cantidad += 1
+                  props.updateProduct(props.dato)
+                }} className='btnInc'>+</button>
+                <button onClick={() => {
+                  props.deleteProduct(props.dato.id)
+                }} className='btnDelete'><ion-icon name="trash-outline"></ion-icon></button>
+                <button onClick={() => {
+                  props.dato.cantidad -= 1
+                  props.updateProduct(props.dato)
+                }} className='btnDec'>-</button>
             </div>
         </div>
     </div>

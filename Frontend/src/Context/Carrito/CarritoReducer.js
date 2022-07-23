@@ -1,5 +1,8 @@
+import { startTransition } from 'react';
 import {
-    ADD_PRODUCT_CAR
+    ADD_PRODUCT_CAR,
+    UPDATE_PRODUCT,
+    DELETE_PRODUCT
 } from '../type';
 
 const CarritoReducer = (state, action) => {
@@ -9,7 +12,33 @@ const CarritoReducer = (state, action) => {
         case ADD_PRODUCT_CAR:
             return {
                 ...state,
-                listProduct: payload
+                listProduct: [...state.listProduct,  {
+                        id: payload.id,
+                        id_proveedro: payload.id_proveedro,
+                        id_user_add: payload.id_user_add,
+                        nombre: payload.nombre,
+                        precio: payload.precio,
+                        estado: payload.estado,
+                        categoria: payload.categoria,
+                        image: payload.image,
+                        cantidad: 1
+                    }
+                ]
+            }
+        case UPDATE_PRODUCT:
+            return {
+                ...state,
+                listProduct: state.listProduct.map(item => {
+                    if( item.id === payload.id ){
+                        return payload
+                    }
+                    return item
+                })
+            }
+        case DELETE_PRODUCT:
+            return {
+                ...state,
+                listProduct: state.listProduct.filter( item => item.id != payload )
             }
         default:
             return state;

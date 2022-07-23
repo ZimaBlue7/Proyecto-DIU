@@ -7,7 +7,7 @@ import { getBottomNavigationUtilityClass } from '@mui/material'
 
 const UserState = (props) => {
     const inicialState = {
-        datosUser: null
+        datosUser: 'cargando'
     }
 
     const [state, dispatch] = useReducer(UserReducer, inicialState)
@@ -15,29 +15,33 @@ const UserState = (props) => {
     const validarUsuario = async (datos) => {
         try {
 
-            //const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
-
-            const res = await axios.get('https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/prodcutSurcusalud');
-            console.log(res.data)
+            /*const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
+            console.log(res.data)*/
             dispatch({
                 type: 'VALIDAR_USUARIO',
-                payload: res.data
+                payload: datos
             })
 
+            //window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(res.data))
+
         } catch (error) {
+            dispatch({
+                type: 'ERROR_VALIDAION',
+                payload: 'error'
+            })
             console.log(error)
         }
     }
 
     const registrarUsuario = async (datos) => {
         try {
-            console.log(datos)
+            /*console.log(datos)
             const res = await axios.post('https://surcusalud.herokuapp.com/user/', datos);
-            console.log(res)
-            /*dispatch({
+            console.log(res)*/
+            dispatch({
                 type: 'REGISTRAR_USUARIO',
-                payload: res.data
-            })*/
+                payload: datos
+            })
         } catch (error) {
             console.log(error)
         }

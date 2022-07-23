@@ -1,6 +1,7 @@
 .bodyCarrito{
     width: 100%;
     min-height: 100vh;
+    margin-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,6 +91,7 @@
 .contListWish .contFactura .contDatos{
     width: 100%;
     height: calc(100% - 90px);
+    padding-top: 20px;
 }
 
 .contListWish .contFactura .contButton{
@@ -105,4 +107,22 @@
     border: none;
     border-radius: 30px;
     font-weight: 700;
+}
+
+.contItemPrecio{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.contDatos .contItemPrecio p{
+    margin: 0;
+    padding: 0 10px;
+}
+
+.contDatos .contItemPrecio .subTotalLP{
+    font-size: 18px;
+    font-weight: 800;
 }

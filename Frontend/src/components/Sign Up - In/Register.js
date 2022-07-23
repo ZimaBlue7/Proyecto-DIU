@@ -12,6 +12,7 @@ const Register = () => {
     const { registrarUsuario, datosUser } = userContext;
 
     const navigate = useNavigate();
+
     const [register, setRegister] = useState({
         nombre:'',
         apellido:'',
@@ -23,70 +24,61 @@ const Register = () => {
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        
-        registrarUsuario(register)
-        //console.log(register)
 
-        /*if( datosUser ){
-            Swal.fire({
-                icon: 'success',
-                title: 'Usuario Creado Con exito',
-                showConfirmButton: false,
-                timer: 3000,
-            }).then(function() {
-                navigate("/");
-            });
-        }
-        else{
-            Swal.fire({
-                icon: 'error',
-                title: 'El usuario no fue creado',
-                showConfirmButton: false,
-                timer: 3000,
-            })
-        }*/
-                
+        window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(register))
+        navigate('/')
+        registrarUsuario(register)
+        
     };
 
     const handleChange = (e) =>{
-        setRegister({...register,[e.target.name]: e.target.value});
+        setRegister({...register, [e.target.name]: e.target.value});
     }
 
     return (
-        <div>
-             <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap" rel="stylesheet"></link>
-   <body className='body'>
-   <header className="header">
-       
-    </header>
-    <main>
+        <div className='bodyRegister'>
 
-        
-    <section className="Register">
-    <section className="Inicia-sesion">
-        <a >¿Ya tienes cuenta?</a>
-        <button className='Button-inicia'><a href='/login'>Iniciar sesion</a></button>
-    </section>
-    <section className="Register__container">
-    <h2 className="regis">Registrate</h2>
-       <div className="profile icon"></div>
-       <div className="profile icon2"></div>
-       <div className="arrow-right icon"></div>
-       <div className="mail icon"></div>
-       <div className="key2 icon"></div>
-       <form className="Register__container--form" onSubmit={handleSubmit}>
-       <input name='nombre' onChange={handleChange}  className="input" type="text" placeholder="Nombre" required></input>
-            <input name='apellido'  onChange={handleChange} className="input" type="text" placeholder="Apellido" required></input>
-            <input name='correo'  onChange={handleChange} className="input" type="correo" placeholder="Correo" required></input>
-            <input name='password'  onChange={handleChange} className="input" type="password" placeholder="Contraseña" required></input>
-            <button className="button">Registrarme</button>
-       </form>
-       
+            <div className='contRegisterDial'>
 
-    </section>
-    </section>
-    </main>
-   </body>
+                <section className="contForm">
+
+                    <h2 className="titleRegister">Registrate</h2>
+
+                    <div className="formRegister">
+                        <div className='contInput'>
+                            <ion-icon name="text-outline"></ion-icon>
+                            <input name='nombre' onChange={handleChange}  type="text" placeholder="Nombre" required></input>
+                        </div>
+                        <div className='contInput'>
+                            <ion-icon name="text-outline"></ion-icon>
+                            <input name='apellido'  onChange={handleChange} type="text" placeholder="Apellido" required></input>
+                        </div>
+                        <div className='contInput'>
+                            <ion-icon name="call-outline"></ion-icon>
+                            <input name='telefono'  onChange={handleChange} type="phone" placeholder="Telefono" required></input>
+                        </div>
+                        <div className='contInput'>
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <input name='correo'  onChange={handleChange} type="correo" placeholder="Correo" required></input>
+                        </div>
+                        <div className='contInput'>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <input name='password'  onChange={handleChange} type="password" placeholder="Contraseña" required></input>
+                        </div>
+                    </div>
+
+                    <button onClick={handleSubmit} className="btnRegister">REGISTRARME</button>
+            
+                </section>
+
+                <section className="Inicia-sesion">
+                    <p>¿Ya tienes cuenta?</p>
+                    <button onClick={() => {
+                        navigate('/login')
+                    }} className='Button-inicia'>INICIAR SESION</button>
+                </section>
+
+            </div>
 
     </div>
     )

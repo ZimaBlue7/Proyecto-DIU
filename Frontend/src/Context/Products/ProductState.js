@@ -14,7 +14,7 @@ const ProductState = (props) => {
 
     const getProduct = async () => {
         try {
-            const res = await axios.get("https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/prodcutSurcusalud");
+            const res = await axios.get("https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/productosSurcusalud");
             
             dispatch({
                 type: 'GET_PRODUCT',

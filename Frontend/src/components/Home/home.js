@@ -8,12 +8,23 @@ import imagenes from '../../Assets/imagenes';
 import Footer from "../General/Footer";
 import NabvarH from "../General/NabvarH";
 
+import Navegation from "../General/Navegation";
+
+import ProductContext from '../../Context/Products/ProductContext.js';
+
 export default function home(){ 
+
+  const productContext = useContext(ProductContext);
+  const {listProduct, getProduct} = productContext;
+
+  useEffect(() => {
+    getProduct()    
+  }, [])
     
   return (
   <Container >
     <div>
-      <NabvarH/>
+      <Navegation/>
     </div>
 
     <div className="imagenP"> 

@@ -14,12 +14,49 @@ const CarritoState = (props) => {
     const addProduct = (datos) => {
         try {
             
-            dispatch({
-                type: 'ADD_PRODUCT_CAR',
-                payload: datos
-            })
+            let list = state.listProduct.filter(item => item.id === datos.id )
+
+            if( list.length === 0 ){
+                dispatch({
+                    type: 'ADD_PRODUCT_CAR',
+                    payload: datos
+                })
+            }
+            else{
+                list[0].cantidad += 1;
+                dispatch({
+                    type: 'UPDATE_PRODUCT',
+                    payload: list[0]
+                })
+            }
+
+            
 
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateProduct = (datos) => {
+        try {
+            dispatch({
+                type: 'UPDATE_PRODUCT',
+                payload: datos
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteProduct = (id) => {
+        try {
+            
+            dispatch({
+                type: 'DELETE_PRODUCT',
+                payload: id
+            })
+
+        }  catch (error) {
             console.log(error)
         }
     }
@@ -27,7 +64,9 @@ const CarritoState = (props) => {
     return (
         <CarritoContext.Provider value={{
             listProduct: state.listProduct,
-            addProduct
+            addProduct,
+            updateProduct,
+            deleteProduct
         }}>
             {props.children}
         </CarritoContext.Provider>

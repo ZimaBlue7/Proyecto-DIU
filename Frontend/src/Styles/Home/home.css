@@ -1,5 +1,5 @@
-.body{
-  background-color: rgb(48, 224, 224);
+body{
+  background-color: #D3F0FA;
 }
 
 .barraArriba{
@@ -20,6 +20,10 @@
   width: 100%;
   height: 300px;
   padding-bottom: 20px;
+}
+
+.imagenP{
+  margin-top: 40px;
 }
 
 .cuadro{
