@@ -15,8 +15,10 @@ const UserState = (props) => {
     const validarUsuario = async (datos) => {
         try {
 
-            const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
-            
+            //const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
+
+            const res = await axios.get('https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/prodcutSurcusalud');
+            console.log(res.data)
             dispatch({
                 type: 'VALIDAR_USUARIO',
                 payload: res.data

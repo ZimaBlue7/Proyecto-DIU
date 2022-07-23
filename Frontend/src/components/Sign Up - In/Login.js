@@ -9,25 +9,24 @@ import UserContext from '../../Context/Users/UserContext';
 
 const Login = () => {
     
-
     const userContext = useContext(UserContext);
     const { validarUsuario, datosUser } = userContext;
 
   const navigate = useNavigate();
-  const [body, setBody] = useState({ usuario: '', password: '' })
+  const [body, setBody] = useState({ email: '', password: '' })
   
   const handleChange = (e) => {
     setBody({...body,[e.target.name]: e.target.value});
   }
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = (e) =>{
 
     e.preventDefault();
     try{
 
-        await validarUsuario(body); 
-        console.log(datosUser)
-        if( datosUser ){
+        validarUsuario(body); 
+        console.log(body)
+        /*if( datosUser ){
  
             Swal.fire({
                 title: 'Verificando informacion',
@@ -66,7 +65,7 @@ const Login = () => {
                 });
             })
               
-        }
+        }*/
             
     }catch(e){
         console.log(e)
