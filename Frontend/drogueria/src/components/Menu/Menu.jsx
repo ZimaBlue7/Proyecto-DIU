@@ -2,21 +2,18 @@ import React, {useEffect, useState,useContext} from 'react'
 import { useNavigate } from "react-router-dom";
 import images from '../../assets/imagenes.js'
 import '../../Styles/Menu.css'
-
+import Footer from "../Footer";
+import NabvarH from "../NabvarH";
 
 const Menu = () => {
-
-
   return (
     <div>
-     <header>
-
-     </header>
+     <div>
+      <NabvarH/>
+    </div>
       <body className='bodyP'>
         <main>
-   
     <section className='container'>
-
   <div class="row row-cols-1 row-cols-md-3">
   <div class="col">
   <div class="card" style={{width: "250px", height: "330px"}}>
@@ -112,6 +109,9 @@ const Menu = () => {
 </section>
     </main>
     </body>
+    <section className='futer'>
+      <Footer/> 
+    </section>
     </div>
   )
 }
