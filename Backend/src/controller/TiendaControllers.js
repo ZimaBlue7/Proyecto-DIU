@@ -4,6 +4,7 @@ const Tienda = require('../models/Tienda');
 const RedesSociales = require('../models/Tienda');
 const Telefonos = require('../models/Tienda');
 const Correos = require('../models/Tienda');
+const GalleryStore = requiere('../models/Tienda.js')
 const jwt = require('jsonwebtoken');
 
 const getInformacionTienda = async (req, res) => {
@@ -99,8 +100,86 @@ const addRedSocial = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({
-            typeError: "Update info tienda",
-            message: "Ha ocurrido un error actualizando la informacion de la tienda",
+            typeError: "Add Red social tienda",
+            message: "Ha ocurrido un error agregando la red social de la tienda",
+            data: {},
+            error: error
+        });
+    }
+}
+
+const addTelefono = async (req, res) => {
+    try {
+        const {
+            tipo,
+            numero
+        } = req.body;
+
+        Telefonos.create({
+            tipo,
+            numero
+        })
+
+        res.json({
+            msg: "El telefono agregado con exito"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add telefono tienda",
+            message: "Ha ocurrido un error agregando el telefono de la tienda",
+            data: {},
+            error: error
+        });
+    }
+}
+
+const addCorreo = async (req, res) => {
+    try {
+        const {
+            email
+        } = req.body
+
+        Correos.create({
+            email
+        })
+
+        res.json({
+            msg: "Correo agregado con exito"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add Red email tienda",
+            message: "Ha ocurrido un error agregando el correo de la tienda",
+            data: {},
+            error: error
+        });
+    }
+}
+
+const addFoto = async (req, res) => {
+    try {
+        const {
+            sede,
+            estado,
+            url
+        } = req.body
+
+        GalleryStore.create({
+            id_sede: sede,
+            estado: estado,
+            url: url
+        })
+
+        res.json({
+            msg: "Correo agregado con exito"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add image tienda",
+            message: "Ha ocurrido un error agregando la foto de la tienda",
             data: {},
             error: error
         });
@@ -109,5 +188,9 @@ const addRedSocial = async (req, res) => {
 
 module.exports = {
     getInformacionTienda,
-    updateInfoTienda
+    updateInfoTienda,
+    addRedSocial,
+    addTelefono,
+    addCorreo,
+    addFoto
 }

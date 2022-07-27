@@ -208,7 +208,7 @@ const addEmpleado = async (req, res) => {
         }
 
         if( decodedToken.rol === "admin" ){
-            const passwordEncript = await bcrypt.hash(password, 5);
+            const passwordEncript = await bcrypt.hash(password, 25);
             const user = await Users.create({
                 nombre: nombre,
                 apellido: apellido,
@@ -533,11 +533,11 @@ const deleteUser = async (req, res) => {
                     }
                 })
 
-                await employee.destroy();
-                await user.destroy();
+                await employee.destroy(id);
+                await user.destroy(id);
     
             }else {
-                user.destroy();
+                user.destroy(id);
             }
     
             res.json({

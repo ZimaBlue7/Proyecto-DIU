@@ -13,6 +13,20 @@ module.exports = ChatStore = db.define("chatStore", {
     id_receiver: {
         type: DataTypes.INTEGER
     },
+})
+
+module.exports = Msg = db.config("chat_mensajes", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    id_chat: {
+        type: DataTypes.INTEGER
+    },
+    user_send: {
+        type: DataTypes.INTEGER
+    },
     time: {
         type: DataTypes.TIME
     },
