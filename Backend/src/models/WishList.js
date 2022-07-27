@@ -11,6 +11,6 @@ module.exports = WishList = db.define('wish_list', {
         type: DataTypes.INTEGER
     },
     estado: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.STRING
     }
 });
