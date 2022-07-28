@@ -11,6 +11,10 @@ app.use(cors());
 
 app.use(require('./routers/userRouter'));
 app.use(require('./routers/imgRouter'));
+app.use(require('./routers/ChatRouter'));
+app.use(require('./routers/StoreRouter'));
+app.use(require('./routers/WishListRouter'));
+app.use(require('./routers/dashboardRouter'));
 
 app.use(express.static('public'));
 
