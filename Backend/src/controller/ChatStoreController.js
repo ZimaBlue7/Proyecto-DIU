@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 
 const getChat = async (req, res) => {
     try {
-        
-        const id = req.params;
 
         const authorization = req.get('authorization');
         let token = null;
@@ -37,7 +35,7 @@ const getChat = async (req, res) => {
             })
         }
         
-        const user = await Users.findByPk(chat.id);
+        const user = await Users.findByPk(chat.id_user);
 
         if( !user ){
             return res.json({ error: 'el usuario no existe' });

@@ -10,7 +10,7 @@ module.exports = Providers = db.define('providers', {
     nombre: {
         type: DataTypes.STRING,
     },
-    apellido: {
+    type_person: {
         type: DataTypes.STRING
     },
     telefono: {

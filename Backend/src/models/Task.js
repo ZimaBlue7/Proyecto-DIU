@@ -7,6 +7,9 @@ module.exports = Task = db.define('task', {
         primaryKey: true,
         autoIncrement: true
     },
+    id_sede:{
+        type: DataTypes.INTEGER
+    },
     titulo: {
         type: DataTypes.STRING
     },

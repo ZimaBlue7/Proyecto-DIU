@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const Pedidos = require('../models/Pedidos')
+const Providers = require('../models/Providers');
 
-const getPedidos = async (req, res) => {
+const getProveedores = async (req, res) => {
     try {
 
         const authorization = req.get('authorization');
@@ -21,20 +21,28 @@ const getPedidos = async (req, res) => {
         if( token.rol !== "employee" || token.rol !== "admin" ){
             return res.json({ error: 'El usuario no tiene acceso a la informacion' });
         }
-        
+
+        const proveeores = await Providers.findAll();
+
+        res.json({
+            proveeores
+        })
+
     } catch (error) {
         res.status(500).json({
-            typeError: "",
-            message: "",
+            typeError: "Get proveeders",
+            message: "Ha ocurrido un problema obteniedo los provedores",
             data: {},
             error: error
         });
     }
 }
 
-const getPedido = async (req, res) => {
+const getProveedor = async (req, res) => {
     try {
-        
+
+        const id = req.params;
+
         const authorization = req.get('authorization');
         let token = null;
 
@@ -52,17 +60,23 @@ const getPedido = async (req, res) => {
             return res.json({ error: 'El usuario no tiene acceso a la informacion' });
         }
 
+        const proveedor = await Providers.findByPk(id);
+
+        res.json({
+            proveedor
+        })
+        
     } catch (error) {
         res.status(500).json({
-            typeError: "",
-            message: "",
+            typeError: "Get proveeder",
+            message: "Ha ocurrido un problema obtenido el proveedor",
             data: {},
             error: error
         });
     }
 }
 
-const addPedido = async (req, res) => {
+const addProveedor = async (req, res) => {
     try {
 
         const authorization = req.get('authorization');
@@ -81,18 +95,39 @@ const addPedido = async (req, res) => {
         if( token.rol !== "employee" || token.rol !== "admin" ){
             return res.json({ error: 'El usuario no tiene acceso a la informacion' });
         }
+
+        const {
+            nombre,
+            tipo_persona,
+            telefono,
+            correo,
+            avatar
+        } = req.body
+
+        await Providers.create({
+            nombre: nombre,
+            type_person: tipo_persona,
+            telefono: telefono,
+            correo: correo,
+            avatar: avatar
+        })
+
+        res.json({
+            msg: "Proveedor agregado con exito"
+        })
+
         
     } catch (error) {
         res.status(500).json({
-            typeError: "",
-            message: "",
+            typeError: "Add proveeder",
+            message: "Ha ocurrido un problema agregando al proveedor",
             data: {},
             error: error
         });
     }
 }
 
-const updatePedido = async (req, res) => {
+const updateProveedor = async (req, res) => {
     try {
 
         const authorization = req.get('authorization');
@@ -111,18 +146,41 @@ const updatePedido = async (req, res) => {
         if( token.rol !== "employee" || token.rol !== "admin" ){
             return res.json({ error: 'El usuario no tiene acceso a la informacion' });
         }
+
+        const id = req.params;
+        const {
+            nombre,
+            tipo_persona,
+            telefono,
+            correo,
+            avatar
+        } = req.body
+
+        const proveedor = await Providers.findByPk(id);
+
+        proveedor.update({
+            nombre: nombre,
+            type_person: tipo_persona,
+            telefono: telefono,
+            correo: correo,
+            avatar: avatar
+        })
+
+        res.json({
+            msg: "Proveedor actualizado"
+        })
         
     } catch (error) {
         res.status(500).json({
-            typeError: "",
-            message: "",
+            typeError: "Update proveedor",
+            message: "Ha ocurrido un problema actualizando el proveedor",
             data: {},
             error: error
         });
     }
 }
 
-const deletePedido = async (req, res) => {
+const deleteProveedor = async (req, res) => {
     try {
 
         const authorization = req.get('authorization');
@@ -141,11 +199,17 @@ const deletePedido = async (req, res) => {
         if( token.rol !== "employee" || token.rol !== "admin" ){
             return res.json({ error: 'El usuario no tiene acceso a la informacion' });
         }
+
+        await Providers.destroy(id);
+
+        res.json({
+            msg: "Proveedor eliminado"
+        })
         
     } catch (error) {
         res.status(500).json({
-            typeError: "",
-            message: "",
+            typeError: "Delete proveedor",
+            message: "Ha ocurrido un problema eliminando el proveedor",
             data: {},
             error: error
         });
@@ -153,9 +217,9 @@ const deletePedido = async (req, res) => {
 }
 
 module.exports = {
-    getPedidos,
-    getPedido,
-    addPedido,
-    updatePedido,
-    deletePedido
+    getProveedores,
+    getProveedor,
+    addProveedor,
+    updateProveedor,
+    deleteProveedor
 }
