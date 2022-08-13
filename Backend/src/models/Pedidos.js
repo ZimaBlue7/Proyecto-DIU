@@ -14,7 +14,8 @@ module.exports = Pedidos = db.define('orders', {
         type: DataTypes.INTEGER
     },
     id_empleado: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: null
     },
     estado: {
         type: DataTypes.STRING

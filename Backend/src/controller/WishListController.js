@@ -7,30 +7,18 @@ const Products = require('../models/Products');
 const getWishList = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
+        const id = req.params;
         let wishList = []
 
         const wish_list = await WishList.findAll({
             where: {
-                id_user: token.id,
+                id_user: id,
                 estado: "activo"
             }
         })
 
         if( wish_list && wish_list.length > 0 ){
-            wish_list.map(wish => {
+            wish_list.map( async wish => {
 
                 let wishL = {
                     wish_data: wish,
@@ -45,7 +33,7 @@ const getWishList = async (req, res) => {
 
                 if( products_wish && products_wish.length > 0 ){
 
-                    products_wish.map( prodWish => {
+                    products_wish.map( async prodWish => {
                         
                         const product = await Products.findByPk(prodWish.id_product)
 
@@ -158,9 +146,36 @@ const delteProduct = async (req, res) => {
     }
 }
 
+const addWishList = async (req, res) => {
+    try {
+        
+        const {
+            user
+        } = req.body;
+
+        await WishList.create({
+            id_user: user,
+            estado: "Activo"
+        });
+
+        res.json({
+            msg: "Wish list agregada"
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            typeError: "Add wish list",
+            message: "Ha ocurrido un error agregando la lista de deseo",
+            data: {},
+            error: error
+        });
+    }
+}
+
 module.exports = {
     getWishList,
     addProduct,
+    addWishList,
     updateProduct,
     delteProduct
 }

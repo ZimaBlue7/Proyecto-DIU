@@ -8,29 +8,8 @@ const Schedule = require('../models/Schedule');
 
 const getUsers = async(req, res) => {
     try {
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const users = await Users.findAll();
-            return res.json(users);
-        }
-        else{
-            return res.json({
-                message: "El usuario no tiene permiso"
-            })
-        }
-
+        const users = await Users.findAll();
+        return res.json(users);
     } catch (error) {
         res.status(500).json({
             typeError: "Get Users",
@@ -80,56 +59,37 @@ const getUser = async(req, res) => {
 const getEmployees = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const employees = await Employees.findAll();
+        const users = await Users.findAll({
+            where: {
+                   rol: "employee"
+            }
+        });
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        let employeesData = [];
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const employees = await Employees.findAll();
-            const users = await Users.findAll({
-                where: {
-                    rol: "employee"
-                }
-            });
-
-            let employeesData = [];
-
-            users.forEach(user => {
-                employees.forEach( emp => {
-                    if( user.id === emp.id ){
+        users.forEach(user => {
+            employees.forEach( emp => {
+                if( user.id === emp.id ){
                         employeesData.push({
-                            id: user.id,
-                            nombre: user.nombre,
-                            apellido: user.apellido,
-                            fecha_nacimiento: user.fecha_nacimiento,
-                            telefono: user.telefono,
-                            correo: user.correo,
-                            avatar: user.avatar,
-                            rol: user.rol,
-                            cargo: emp.cargo,
-                            sede: emp.sede
-                        })
-                    }
+                        id: user.id,
+                        nombre: user.nombre,
+                        apellido: user.apellido,
+                        fecha_nacimiento: user.fecha_nacimiento,
+                        telefono: user.telefono,
+                        correo: user.correo,
+                        avatar: user.avatar,
+                        rol: user.rol,
+                        cargo: emp.cargo,
+                        sede: emp.sede
+                    })
+                }
                     
-                } )
-            });
+            } )
+        });
 
-            res.json(employeesData);
-        }
-        else{
-            return res.json({
-                message: "El usuario no tiene permiso"
-            })
-        }
+        res.json(employeesData);
+        
 
     } catch (error) {
         res.status(500).json({
@@ -145,32 +105,15 @@ const getSchedule = async (req, res) => {
     try {
 
         const {id} = req.params;
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const horarios = await Schedule.findAll({
-                where:{
-                    id_user: id
-                }
-            })
-
-            res,json(horarios);
-        }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+        
+        const horarios = await Schedule.findAll({
+            where:{
+                id_user: id
+            }
         })
+
+        res.json(horarios);
+
         
     } catch (error) {
         res.status(500).json({
@@ -194,49 +137,31 @@ const addEmpleado = async (req, res) => {
             cargo,
             sede
         } = req.body;
-        const authorization = req.get('authorization');
-        let token = null;
+        
+        const passwordEncript =  await bcrypt.hash(password, 10);
+        const user = await Users.create({
+            nombre: nombre,
+            apellido: apellido,
+            fecha_nacimiento: fecha_nacimiento,
+            telefono: telefono,
+            correo: correo,
+            password: passwordEncript,
+            avatar: 1,
+            rol: "employee"
+        })
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        const employees = await Employees.create({
+            id: user.id,
+            cargo: cargo,
+            sede: sede
+        });
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "admin" ){
-            const passwordEncript = await bcrypt.hash(password, 25);
-            const user = await Users.create({
-                nombre: nombre,
-                apellido: apellido,
-                fecha_nacimiento: fecha_nacimiento,
-                telefono: telefono,
-                correo: correo,
-                password: passwordEncript,
-                avatar: 1,
-                rol: "employee"
-            })
-
-            const employees = await Employees.create({
-                id: user.id,
-                cargo: cargo,
-                sede: sede
-            });
-
-            return res.json({
-                mjs: "Usuario creado",
-                datos_usuario: [
-                    user,
-                    employees
-                ]
-            })
-        }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+        res.json({
+            mjs: "Usuario creado",
+            datos_user: [
+                user,
+                employees
+            ]
         })
 
     } catch (error) {
@@ -272,23 +197,13 @@ const createUser = async (req, res) => {
             rol: "client"
         })
 
-        const userForToken = {
-            id: user.id,
-            nombre: user.nombre + " " + user.apellido,
-            email: user.correo,
-            rol: user.rol,
-        }
-
-        const token = jwt.sign(userForToken, process.env.clave);
-
         res.json({
             id: user.id,
             nombre: user.nombre,
             apellido: user.apellido,
             telefono: user.telefono,
             correo: user.correo,
-            rol: user.rol,
-            token: token
+            rol: user.rol
         });
 
     } catch (error) {
@@ -311,36 +226,17 @@ const addSchedule = async (req, res) => {
             fecha
         } = require.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const horario = await Schedule.create({
-                id_user,
-                hora_inicio,
-                hora_fin,
-                fecha
-            })
-
-            res,json({
-                message: "Horario agreagdo con exito",
-                horario: horario
-            });
-        }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+        const horario = await Schedule.create({
+            id_user,
+            hora_inicio,
+            hora_fin,
+            fecha
         })
+
+        res,json({
+            message: "Horario agreagdo con exito",
+            horario: horario
+        });
         
     } catch (error) {
         res.status(500).json({
@@ -361,24 +257,8 @@ const updateUser = async (req, res) => {
             apellido,
             telefono,
         } = req.body
-        const authorization = req.get('authorization');
-        let token = null;
 
         const user = await Users.findByPk(id);
-
-        if( !user ){
-            return res.json({ error: 'Usuario no encontrado' });
-        }
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
 
         user.update({
             nombre,
@@ -410,35 +290,16 @@ const updateEmployees = async (req, res) => {
             sede
         } = req.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const employee = await Employees.findByPk(id);
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        employee.update({
+            cargo,
+            sede
+        })
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const employee = await Employees.findByPk(id);
-
-            employee.update({
-                cargo,
-                sede
-            })
-
-            res.json({
-                mgs: "Empleado actualizado",
-                data: employee
-            })
-        }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+        res.json({
+            mgs: "Empleado actualizado",
+            data: employee
         })
 
     } catch (error) {
@@ -462,37 +323,18 @@ const updateSchedule = async (req, res) => {
             fecha
         } = require.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const horario = await Schedule.findByPk(id);
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        horario.update({
+            id_user,
+            hora_inicio,
+            hora_fin,
+            fecha
+        })
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const horario = await Schedule.findByPk(id);
-
-            horario.update({
-                id_user,
-                hora_inicio,
-                hora_fin,
-                fecha
-            })
-
-            res.json({
-                mgs: "horario actualizado",
-                horario: horario
-            })
-        }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+        res.json({
+            mgs: "horario actualizado",
+            horario: horario
         })
 
     } catch (error) {
@@ -508,46 +350,26 @@ const updateSchedule = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const {id} = req.params;
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "admin" ){
-            
-            const user = await Users.findByPk(id);
-            if( user.rol === "employee" ){
-                const employee = await Employees.findByPk(id);
+        
+        const user = await Users.findByPk(id);
+        if( user.rol === "employee" ){
+            const employee = await Employees.findByPk(id);
     
-                await Schedule.destroy({
-                    where: {
-                        id_user: id
-                    }
-                })
-
-                await employee.destroy(id);
-                await user.destroy(id);
-    
-            }else {
-                user.destroy(id);
-            }
-    
-            res.json({
-                mgs: "Usuario eliminado",
+            await Schedule.destroy({
+                where: {
+                    id_user: id
+                }
             })
 
+            await employee.destroy(id);
+            await user.destroy(id);
+    
+        }else {
+            user.destroy(id);
         }
-
-        return res.json({
-            message: "El usuario no tiene permiso"
+    
+        res.json({
+            mgs: "Usuario eliminado",
         })
 
     } catch (error) {
@@ -584,17 +406,6 @@ const verificarUser = async (req, res) => {
 
                 const employee = await Employees.findByPk(user[0].id);
 
-                const userForToken = {
-                    id: user[0].id,
-                    nombre: user[0].nombre + " " + user[0].apellido,
-                    email: user[0].correo,
-                    cargo: employee.cargo,
-                    sede: employee.sede,
-                    rol: user[0].rol,
-                }
-    
-                const token = jwt.sign(userForToken, process.env.clave);
-
                 res.json({
                     id: user[0].id,
                     nombre: user[0].nombre,
@@ -603,50 +414,30 @@ const verificarUser = async (req, res) => {
                     correo: user[0].correo,
                     cargo: employee.cargo,
                     sede: employee.sede,
-                    rol: user[0].rol,
-                    token: token
+                    rol: user[0].rol
                 });
 
             }
             else if( user[0].rol === "admin" ){
 
-                const userForToken = {
-                    id: user[0].id,
-                    nombre: user[0].nombre + " " + user[0].apellido,
-                    email: user[0].correo,
-                    rol: user[0].rol,
-                }
-    
-                const token = jwt.sign(userForToken, process.env.clave);
-
                 res.json({
                     id: user[0].id,
                     nombre: user[0].nombre,
                     apellido: user[0].apellido,
                     telefono: user[0].telefono,
                     correo: user[0].correo,
-                    rol: user[0].rol,
-                    token: token
+                    rol: user[0].rol
                 });
             }
             else {
-                const userForToken = {
-                    id: user[0].id,
-                    nombre: user[0].nombre + " " + user[0].apellido,
-                    email: user[0].correo,
-                    rol: user[0].rol,
-                }
-    
-                const token = jwt.sign(userForToken, process.env.clave);
-
+                
                 res.json({
                     id: user[0].id,
                     nombre: user[0].nombre,
                     apellido: user[0].apellido,
                     telefono: user[0].telefono,
                     correo: user[0].correo,
-                    rol: user[0].rol,
-                    token: token
+                    rol: user[0].rol
                 });
 
             }

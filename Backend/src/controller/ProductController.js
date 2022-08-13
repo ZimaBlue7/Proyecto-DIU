@@ -7,19 +7,6 @@ const jwt = require('jsonwebtoken');
 const getProducts = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
         const products = await Products.findAll();
         const images = await Images.findAll({
             where: {
@@ -29,22 +16,12 @@ const getProducts = async (req, res) => {
 
         const productAll = []
 
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            products.map( product => {
-                productAll.push({
-                    product: product,
-                    images: images.filter(img => img.id_product === product.id)
-                })
-            } )
-        }
-        else{
-            products.map( product => {
-                productAll.push({
-                    product: product,
-                    images: images.filter(img => img.id_product === product.id && img.estado === "activa")
-                })
-            } )
-        }
+        products.map( product => {
+            productAll.push({
+                product: product,
+                images: images.filter(img => img.id_product === product.id)
+            })
+        } )
 
         res.json({
             productAll
@@ -64,19 +41,6 @@ const getProduct = async (req, res) => {
     try {
         const id = req.params;
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
         const product = await Products.findByPk(id);
         const images = await Image.findAll({
             where: {
@@ -84,18 +48,10 @@ const getProduct = async (req, res) => {
             }
         })
 
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            return res.json({
-                product: product,
-                images: images
-            })
-        }
-        else{
-            return res.json({
-                product: product,
-                images: images.filter(img => img.estado === "activa")
-            })
-        }
+        return res.json({
+            product: product,
+            images: images
+        })
 
     } catch (error) {
         res.status(500).json({
@@ -118,42 +74,22 @@ const addProduct = async (req, res) => {
             descripcion,
             categoria, 
             image
-        } = req.params;
+        } = req.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            await Products.create({
-                id_proveedor: proveedor,
-                id_user_add: employee,
-                nombre,
-                precio,
-                estado,
-                descripcion,
-                categoria, 
-                image
-            })
+        await Products.create({
+            id_proveedor: proveedor,
+            id_user_add: employee,
+            nombre,
+            precio,
+            estado,
+            descripcion,
+            categoria, 
+            image
+        })
     
-            return res.json({
-                msg: "Producto agregado con exito"
-            })
-        }
-        else{
-            return res.json({
-                message: "El usuario no tiene permiso"
-            })
-        }
+        return res.json({
+            msg: "Producto agregado con exito"
+        })
 
     } catch (error) {
         res.status(500).json({
@@ -178,41 +114,21 @@ const updateProduct = async (req, res) => {
             image
         } = req.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const product = await Products.findByPk(id);
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        product.update({
+            id_user_add: employee,
+            nombre,
+            precio,
+            estado,
+            descripcion,
+            categoria, 
+            image
+        })
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            const product = await Products.findByPk(id);
-
-            product.update({
-                id_user_add: employee,
-                nombre,
-                precio,
-                estado,
-                descripcion,
-                categoria, 
-                image
-            })
-
-            return res.json({
-                msg: "Producto actualizado"
-            })
-        }
-        else{
-            return res.json({
-                message: "El usuario no tiene permiso"
-            })
-        }
+        return res.json({
+            msg: "Producto actualizado"
+        })
 
     } catch (error) {
         res.status(500).json({
@@ -228,31 +144,11 @@ const deleteProduct = async (req, res) => {
     try {
         const id = req.params
 
-        const authorization = req.get('authorization');
-        let token = null;
+        await Products.destroy(id)
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( decodedToken.rol === "employee" || decodedToken.rol === "admin" ){
-            await Products.destroy(id)
-
-            return res.json({
-                msg: "Producto eliminado"
-            })
-        }
-        else{
-            return res.json({
-                message: "El usuario no tiene permiso"
-            })
-        }
+        return res.json({
+            msg: "Producto eliminado"
+        })
 
     } catch (error) {
         res.status(500).json({

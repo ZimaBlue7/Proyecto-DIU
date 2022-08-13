@@ -19,7 +19,7 @@ userRouter.get('/users', getUsers);
 userRouter.get('/user/:id', getUser);
 userRouter.get('/employees', getEmployees);
 
-userRouter.post('/employee', addEmpleado);
+userRouter.post('/employee', addEmpleado); // Error
 userRouter.post('/user', createUser);
 userRouter.post('/autenticarUser', verificarUser);
 

@@ -1,26 +1,14 @@
 require('dotenv').config();
 
-const Pedidos = require('../models/Pedidos')
+const Pedidos = require('../models/Pedidos');
+const WishList = require('../models/WishList');
 
 const getPedidos = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const pedidos = await Pedidos.findAll();
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
+        res.json(pedidos);
         
     } catch (error) {
         res.status(500).json({
@@ -35,22 +23,37 @@ const getPedidos = async (req, res) => {
 const getPedido = async (req, res) => {
     try {
         
-        const authorization = req.get('authorization');
-        let token = null;
+        const id = req.params;
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        const wistList = await WishList.findAll({
+            where:{
+                id_user: id
+            }
+        });
 
-        const decodedToken = jwt.verify(token, process.env.clave);
 
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
+        let listW = [];
+        wistList.map( async wishL => {
+            let list = {
+                wishList: wishL,
+                pedido: []
+            }
 
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
+            const pedido = await Pedidos.findAll({
+                where: {
+                    id_wish_list: wishL.id
+                }
+            })
+
+            pedido.map( ped => {
+                list.pedido.push(ped)
+            } )
+
+            listW.push(list);
+
+        } )
+
+        res.json({listW})
 
     } catch (error) {
         res.status(500).json({
@@ -65,22 +68,26 @@ const getPedido = async (req, res) => {
 const addPedido = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const {
+            tipoEnvio,
+            wistList
+        } = req.body;
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        const wistlist = await WishList.findByPk(wistList);
 
-        const decodedToken = jwt.verify(token, process.env.clave);
+        wistlist.update({
+            estado: 'Pedido'
+        })
 
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
+        await Pedidos.create({
+            tipo_envio: tipoEnvio,
+            id_wish_list: wistList,
+            estado: "Activo"
+        })
 
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
+        res.json({
+            msg: "Pedido agregado"
+        })
         
     } catch (error) {
         res.status(500).json({
@@ -94,23 +101,49 @@ const addPedido = async (req, res) => {
 
 const updatePedido = async (req, res) => {
     try {
+        
+        const id = req.params;
+        const {
+            estado
+        } = req.body;
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const pedidos = await Pedidos.findByPk(id);
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        pedidos.update({
+            estado: estado
+        })
 
-        const decodedToken = jwt.verify(token, process.env.clave);
+        res.json({
+            msg: "Pedido actualizado"
+        })
+        
+    } catch (error) {
+        res.status(500).json({
+            typeError: "",
+            message: "",
+            data: {},
+            error: error
+        });
+    }
+}
 
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
+const AsignarEmpleadoPedido = async (req, res) => {
+    try {
+        
+        const id = req.params;
+        const {
+            empleado
+        } = req.body;
 
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
+        const pedidos = await Pedidos.findByPk(id);
+
+        pedidos.update({
+            id_empleado: empleado
+        })
+
+        res.json({
+            msg: "Pedido actualizado"
+        })
         
     } catch (error) {
         res.status(500).json({
@@ -125,22 +158,13 @@ const updatePedido = async (req, res) => {
 const deletePedido = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
+        const id = req.params;
 
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
+        await Pedidos.destroy(id);
 
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
+        res.json({
+            msg: "Pedido eliminado"
+        })
         
     } catch (error) {
         res.status(500).json({
@@ -156,6 +180,7 @@ module.exports = {
     getPedidos,
     getPedido,
     addPedido,
+    AsignarEmpleadoPedido,
     updatePedido,
     deletePedido
 }

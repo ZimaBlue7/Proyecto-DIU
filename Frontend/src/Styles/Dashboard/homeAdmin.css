@@ -1,0 +1,72 @@
+.contHomeAdmin {
+    border-radius: 15px;
+    height: 100%;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.514);
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.contHomeAdmin::-webkit-scrollbar{
+    width: 10px;
+}
+
+.contHomeAdmin::-webkit-scrollbar-thumb{
+    background: linear-gradient(#036aaf, #00ffea);
+    border-radius: 6px;
+}
+
+.contHomeAdmin .resumenDatos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*flex-wrap: wrap;*/
+    padding: 10px 0;
+}
+
+.contHomeAdmin .resumenDatos div {
+    height: 150px;
+    min-width: 200;
+    width: 270px;
+    margin: 0 5px;
+    border: 1px solid rgba(156, 153, 153, 0.699);
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.459);
+}
+
+.contHomeAdmin .datosRecientes {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contHomeAdmin .datosRecientes .contUserRecientes {
+    width: 500px;
+    min-height: 200px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.contHomeAdmin .datosRecientes .contTareasRecientes {
+    width: calc(100% - 600px);
+    min-height: 200px;
+    background: blue;
+    border-radius: 10px;
+}
+
+.contHomeAdmin .graficosProductoTem {
+    width: 100%;
+    min-height: 200px;
+    background: red;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.contHomeAdmin .comentariosRecinetes {
+    width: 100%;
+    min-height: 200px;
+    background: red;
+    margin: 10px 0;
+    border-radius: 10px;
+}

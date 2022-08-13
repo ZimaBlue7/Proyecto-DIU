@@ -15,7 +15,7 @@ module.exports = ChatStore = db.define("chatStore", {
     },
 })
 
-module.exports = Msg = db.config("chat_mensajes", {
+module.exports = Msg = db.define("chat_mensajes", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

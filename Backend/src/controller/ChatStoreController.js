@@ -8,19 +8,7 @@ const jwt = require('jsonwebtoken');
 const getChat = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
+        const id = req.params;
         const chat = await ChatStore.findByPk(id);
         const message = await Msg.findAll({
             where: {
@@ -28,33 +16,16 @@ const getChat = async (req, res) => {
             }
         })
 
-        if( token.rol === "admin" ){ 
-            return res.json({
-                chat: chat,
-                mensajes: message
-            })
-        }
-        
         const user = await Users.findByPk(chat.id_user);
-
+       
         if( !user ){
             return res.json({ error: 'el usuario no existe' });
         }
 
-        if( user.nombre === token.nombre && user.id === token.id && user.correo === email && user.rol === token.rol ){
-            return res.json({
-                chat: chat,
-                mensajes: message
-            })
-        }
-        else{
-            return res.json({ 
-                error: 'el usuario no tiene permiso',
-                data: []
-            });
-        }
-
-
+        return res.json({
+            chat: chat,
+            mensajes: message
+        })
 
     } catch (error) {
         res.status(500).json({
@@ -71,25 +42,8 @@ const deleteMenssage = async (req, res) => {
 
         const id = req.params;
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
         const message = await Msg.findByPk(id);
-
-        if( message.user_send !== token.id ){
-            return res.json({ error: 'El usuario no tiene permiso' });
-        }
-        
+ 
         await Msg.destroy(id)
 
         res.json({

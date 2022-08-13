@@ -8,59 +8,24 @@ const Products = require('../models/Products')
 const getTasks = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const tasks = await Task.findAll();
 
-        if( token.rol === "admin" ){
+        const sedes = await Sedes.findAll();
 
-            const sedes = await Sedes.findAll();
+        let tasksList = []
 
-            let tasksList = []
-
-            sedes.map(sede => {
-                tasksList.push({
-                    id_sede: sede.id,
-                    ubicacion: sede.ubicacion,
-                    encargado: sede.encargado,
-                    tasks: tasks.filter(task => task.id_sede === sede.id)
-                })
-            })            
-
-            res.json({
-                tasksList
+        sedes.map(sede => {
+            tasksList.push({
+                id_sede: sede.id,
+                ubicacion: sede.ubicacion,
+                encargado: sede.encargado,
+                tasks: tasks.filter(task => task.id_sede === sede.id)
             })
-        }
-        else{
+        })            
 
-            const sedes = await Sedes.findByPk(token.sede);
-            let datos = {
-                id_sede: sedes.id,
-                ubicacion: sedes.ubicacion,
-                encargado: sedes.encargado,
-                tasks: tasks.filter(task => task.id_sede === sedes.id || task.id_sede === null )
-            }
-
-            res.json({
-                datos
-            })
-
-        }
+        res.json({
+            tasksList
+        })
         
     } catch (error) {
         res.status(500).json({
@@ -74,23 +39,6 @@ const getTasks = async (req, res) => {
 
 const getTask = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
 
@@ -112,23 +60,6 @@ const getTask = async (req, res) => {
 
 const addTask = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const {
             sede,
@@ -164,23 +95,6 @@ const addTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
         const {
@@ -221,23 +135,6 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const id = req.params
 
         await Task.destroy(id)
@@ -259,23 +156,6 @@ const deleteTask = async (req, res) => {
 const getSedes = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const sedes = await Sedes.findAll();
 
         res.json({
@@ -294,23 +174,6 @@ const getSedes = async (req, res) => {
 
 const getSede = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
 
@@ -332,23 +195,6 @@ const getSede = async (req, res) => {
 
 const addSede = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const {
             ubicacion,
@@ -376,23 +222,6 @@ const addSede = async (req, res) => {
 
 const updateSede = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
         const {
@@ -424,23 +253,6 @@ const updateSede = async (req, res) => {
 const deleteSede = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const id = req.params
 
         await Sedes.destroy(id)
@@ -461,23 +273,6 @@ const deleteSede = async (req, res) => {
 
 const getInventarios = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const inventarios = await Inventories.findAll();
         const products = await Products.findAll();
@@ -519,23 +314,6 @@ const getInventarios = async (req, res) => {
 const getInventario = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const id = req.params
 
         const inventario = await Inventories.findByPk(id);
@@ -569,23 +347,6 @@ const getInventario = async (req, res) => {
 
 const getInventarioSede = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
 
@@ -623,23 +384,6 @@ const getInventarioSede = async (req, res) => {
 const addInventario = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const {
             sede,
             product,
@@ -669,23 +413,6 @@ const addInventario = async (req, res) => {
 const updateInventario = async (req, res) => {
     try {
 
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
-
         const id = req.params
         const {
             cantidad
@@ -712,23 +439,6 @@ const updateInventario = async (req, res) => {
 
 const deleteInventario = async (req, res) => {
     try {
-
-        const authorization = req.get('authorization');
-        let token = null;
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, process.env.clave);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
-        }
-
-        if( token.rol !== "employee" || token.rol !== "admin" ){
-            return res.json({ error: 'El usuario no tiene acceso a la informacion' });
-        }
 
         const id = req.params
 

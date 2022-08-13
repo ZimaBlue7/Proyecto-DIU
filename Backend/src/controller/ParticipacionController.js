@@ -11,7 +11,7 @@ const getComments = async (req, res) => {
 
         let comments = [];
 
-        AllComments.forEach( comment => {
+        AllComments.forEach( async comment => {
             const user = await Users.findByPk(comment.id_user);
             const product = await Products.findByPk(comment.id_product);
             comm = {
@@ -80,23 +80,11 @@ const addComment = async (req, res) => {
             text,
             calificacion
         } = req.body;
-        const authorization = req.get('authorization');
-        let token = null;
 
         const user = await Users.findByPk(id_user);
 
         if( !user ){
             return res.json({ error: 'Usuario no encontrado' });
-        }
-
-        if( authorization && authorization.toLowerCase().startsWith('bearer') ){
-            token = authorization.substring(7);
-        }
-
-        const decodedToken = jwt.verify(token, user.password);
-
-        if( !token || !decodedToken.rol ){
-            return res.json({ error: 'token missing or invalid' });
         }
 
         Comments.create({
@@ -127,7 +115,7 @@ const getOpinions = async (req, res) => {
 
         let opinions = [];
 
-        AllOpinions.forEach(opinion => {
+        AllOpinions.forEach( async opinion => {
             const user = await Users.findByPk(opinion.id_user);
             opi = {
                 id: opinion.id,
@@ -160,9 +148,9 @@ const getOpinion = async (req, res) => {
 
         const user = await Users.findByPk(opinions.id_user);
         opi = {
-            id: opinion.id,
-            texto: opinion.texto,
-            id_user: opinion.id_user,
+            id: opinions.id,
+            texto: opinions.texto,
+            id_user: opinions.id_user,
             nombre_user: user.nombre + " " + user.apellido,
             correo: user.correo,
             rol: user.rol
