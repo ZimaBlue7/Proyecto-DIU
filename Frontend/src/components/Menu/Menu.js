@@ -22,49 +22,35 @@ const Menu = () => {
     getProduct()    
   })
 
-  return (
-    <div>
-     <div>
+  return <div className='bodyMenu'>
       <Navegation/>
+      <h1>Productos</h1>
+      <div className='contProduct'>
+        {
+          listProduct && listProduct.length > 0
+            ? listProduct.map( item => {
+              return <div class="cardProduct" to={'/menu/'+item.id} >
+                <img src={defaultImg} class="imgProduct" alt="..."/>
+                <div class="cardBody"> 
+                  <h4 class="cardTitle">{item.nombre}</h4>
+                  <p class="cardText">{'$'+item.precio}</p>
+                  <button onClick={() => {
+                    console.log(item)
+                    addProduct(item)
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Agregado con exito',
+                      showConfirmButton: false,
+                      timer: 3000,
+                    })
+                  }} class="btn btn-success">Agregar al carrito</button>
+                </div>
+              </div>
+            } )
+            : <> </>
+        }
+      </div>
     </div>
-      <body className='bodyP'>
-        <main>
-          <section className='container'>
-            <div class="row row-cols-1 row-cols-md-3">
-              {
-                listProduct && listProduct.length > 0
-                ? listProduct.map( item => {
-                  return <div class="col">
-                    <div class="card" style={{width: "250px", height: "330px"}}>
-                      <img src={defaultImg} class="card-img-top" alt="..."/>
-                      <div class="card-body"> 
-                        <h5  class="card-title"><Link className='name' to={'/menu/'+item.id}>{item.nombre}</Link></h5>
-                        <p class="card-text">{item.precio}</p>
-                        <button onClick={() => {
-                          console.log(item)
-                          addProduct(item)
-                          Swal.fire({
-                            icon: 'success',
-                            title: 'Agregado con exito',
-                            showConfirmButton: false,
-                            timer: 3000,
-                          })
-                        }} class="btn btn-success">Agregar al carrito</button>
-                      </div>
-                    </div>
-                  </div>
-                } )
-                : <> </>
-              }
-            </div>
-          </section>
-        </main>
-      </body>
-    <section className='futer'>
-      <Footer/> 
-    </section>
-    </div>
-  )
 }
 
 export default Menu

@@ -2,7 +2,8 @@ import { startTransition } from 'react';
 import {
     ADD_PRODUCT_CAR,
     UPDATE_PRODUCT,
-    DELETE_PRODUCT
+    DELETE_PRODUCT,
+    TOTAL_PRODUCTO
 } from '../type';
 
 const CarritoReducer = (state, action) => {
@@ -40,6 +41,11 @@ const CarritoReducer = (state, action) => {
             return {
                 ...state,
                 listProduct: state.listProduct.filter( item => item.id != payload )
+            }
+        case TOTAL_PRODUCTO:
+            return {
+                ...state,
+                totalAPagar: payload
             }
         default:
             return state;

@@ -6,7 +6,8 @@ import CarritoReducer from './CarritoReducer'
 
 const CarritoState = (props) => {
     const inicialState = {
-        listProduct: []
+        listProduct: [],
+        totalAPagar: 0
     }
 
     const [state, dispatch] = useReducer(CarritoReducer, inicialState)
@@ -30,8 +31,6 @@ const CarritoState = (props) => {
                 })
             }
 
-            
-
         } catch (error) {
             console.log(error)
         }
@@ -43,6 +42,7 @@ const CarritoState = (props) => {
                 type: 'UPDATE_PRODUCT',
                 payload: datos
             })
+
         } catch (error) {
             console.log(error)
         }
@@ -61,12 +61,30 @@ const CarritoState = (props) => {
         }
     }
 
+    const calcularTotal = () => {
+
+        let total = 0;
+
+        if( state.listProduct && state.listProduct.length > 0 ){
+            state.listProduct.map( product => {
+                total += product.precio * product.cantidad
+            } )
+        }
+
+        dispatch({
+            type: 'TOTAL_PRODUCTO',
+            payload: total
+        })
+    }
+
     return (
         <CarritoContext.Provider value={{
             listProduct: state.listProduct,
+            totalAPagar: state.totalAPagar,
             addProduct,
             updateProduct,
-            deleteProduct
+            deleteProduct,
+            calcularTotal 
         }}>
             {props.children}
         </CarritoContext.Provider>

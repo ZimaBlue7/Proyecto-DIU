@@ -17,6 +17,7 @@ import Menu from "./components/Menu/Menu";
 import NotFound from "./components/General/NotFound";
 import Succes from './components/Pago/Succes'
 import HomeAdmin from './components/Dashboard/ContPages';
+import Contact from "./components/Contact/Contact";
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
               <Route path='/Perfil' element={<Perfil/>}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='/Register' element={<Register/>}/> 
-              <Route path='/carrito' element={<Carrito/>}/>             
-              <Route path='/menu/' element={<Menu/>}/> 
+              <Route path='/carrito' element={<Carrito/>}/>          
+              <Route path='/contacto' element={<Contact/>}/> 
+              <Route path='/menu' element={<Menu/>}/>
               <Route path='/menu/:idproduct' element={<ViewProduct/>}/> 
               <Route path='/notfound' element={<NotFound/>}/> 
               <Route path='/pago' element={<Succes/>}/> 

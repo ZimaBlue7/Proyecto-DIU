@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import '../../Styles/Carrito/carrito.css'
 import ItemProduct from './ItemProduct';
@@ -15,26 +15,15 @@ export default function Carrito() {
     const [pagar, setPagar] = useState(false)
 
     const carritoContext = useContext(CarritoContext);
-    const {listProduct, addProduct, updateProduct, deleteProduct} = carritoContext;
+    const {listProduct, updateProduct, deleteProduct, calcularTotal, totalAPagar} = carritoContext;
 
     const [total, setTotal] = useState(0);
 
     console.log(listProduct)
 
-    const setTotalC = () => {
-
-        const totalC = 0;
-        if( listProduct.length > 0 ){
-            listProduct.map(item => {
-                totalC += item.cantidad * item.precio
-            })
-        }
-        
-        setTotal(totalC)
-        
-    }
-
-    
+    useEffect(() => {
+        calcularTotal();
+    })
 
   return (
     <div className='bodyCarrito'>
@@ -86,7 +75,7 @@ export default function Carrito() {
                                 })
                             }
                             <div className='contTotal'>
-                                <p>{"Total: " + total}</p>
+                                <p>{"Total: " + totalAPagar}</p>
                             </div>
                             </> 
                             : <></>
@@ -94,7 +83,7 @@ export default function Carrito() {
                     }
                 </div>
                 <div className='contButton'>
-                    <Succes dato = {listProduct[0]} />
+                    <Succes dato = {listProduct[0]} total={totalAPagar} />
                     {/*<button onClick={() => {
                         setPagar(!pagar)
                     }}>REALIZAR COMPRA</button>*/}
