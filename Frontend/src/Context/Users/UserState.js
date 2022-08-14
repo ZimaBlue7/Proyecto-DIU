@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import UserContext from './UserContext'
 import UserReducer from './UserReducer'
-import { getBottomNavigationUtilityClass } from '@mui/material'
 
 const UserState = (props) => {
     const inicialState = {
@@ -11,15 +10,15 @@ const UserState = (props) => {
     }
 
     const [state, dispatch] = useReducer(UserReducer, inicialState)
-
+    
     const validarUsuario = async (datos) => {
         try {
 
-            /*const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
-            console.log(res.data)*/
+            const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
+            console.log(res.data)
             dispatch({
                 type: 'VALIDAR_USUARIO',
-                payload: datos
+                payload: res.data
             })
 
             //window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(res.data))
@@ -35,15 +34,13 @@ const UserState = (props) => {
 
     const registrarUsuario = async (datos) => {
         try {
-            /*console.log(datos)
-            const res = await axios.post('https://surcusalud.herokuapp.com/user/', datos);
-            console.log(res)*/
+            const res = await axios.post('https://surcusalud.herokuapp.com/user', datos);
             dispatch({
                 type: 'REGISTRAR_USUARIO',
-                payload: datos
+                payload: res.data
             })
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data)
         }
     }
 

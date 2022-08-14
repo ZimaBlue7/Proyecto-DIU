@@ -1,4 +1,4 @@
-.bodyNavegacion {
+.bodyNavegacionAdmin {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,26 +14,26 @@
     transition: 2s;
 }
 
-.bodyNavegacion.active {
+.bodyNavegacionAdmin.active {
     width: 45px;
     background: none;
 }
 
-.bodyNavegacion .conBtnToggle,
-.bodyNavegacion .contRutas,
-.bodyNavegacion .contBtnSignOff {
+.bodyNavegacionAdmin .conBtnToggle,
+.bodyNavegacionAdmin .contRutas,
+.bodyNavegacionAdmin .contBtnSignOff {
     width: 100%;
     padding: 10px;
     transition: 2s;
 }
 
-.bodyNavegacion .conBtnToggle {
+.bodyNavegacionAdmin .conBtnToggle {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.bodyNavegacion .conBtnToggle button {
+.bodyNavegacionAdmin .conBtnToggle button {
     width: 30px;
     height: 30px;
     border: none;
@@ -43,24 +43,24 @@
     align-items: center;
 }
 
-.bodyNavegacion .conBtnToggle button ion-icon {
+.bodyNavegacionAdmin .conBtnToggle button ion-icon {
     font-size: 25px;
 } 
 
-.bodyNavegacion .contRutas ul {
+.bodyNavegacionAdmin .contRutas ul {
     list-style: none;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.bodyNavegacion .contRutas ul li {
+.bodyNavegacionAdmin .contRutas ul li {
     width: 100%;
     height: 35px;
     margin: 5px 0;
 }
 
-.bodyNavegacion .contRutas ul li .link {
+.bodyNavegacionAdmin .contRutas ul li .link {
     width: 100%;
     height: 100%;
     text-decoration: none;
@@ -69,7 +69,7 @@
     align-items: center;
 }
 
-.bodyNavegacion .contRutas ul li .link .icon {
+.bodyNavegacionAdmin .contRutas ul li .link .icon {
     width: 35px;
     height: 35px;
     display: flex;
@@ -79,16 +79,16 @@
     transition: 3s;
 }
 
-.bodyNavegacion .contRutas ul li .link:hover .icon {
+.bodyNavegacionAdmin .contRutas ul li .link:hover .icon {
     background: #00ffff;
 }
 
-.bodyNavegacion .contRutas ul li .link .icon ion-icon {
+.bodyNavegacionAdmin .contRutas ul li .link .icon ion-icon {
     font-size: 25px;
     color: black;
 }
 
-.bodyNavegacion .contRutas ul li .link .text {
+.bodyNavegacionAdmin .contRutas ul li .link .text {
     width: calc(100% - 40px);
     height: 100%;
     color: black;
@@ -101,17 +101,17 @@
     overflow: hidden;
 }
 
-.bodyNavegacion .contRutas ul li .link:hover .text {
+.bodyNavegacionAdmin .contRutas ul li .link:hover .text {
     background: #8bffff;
 }
 
-.bodyNavegacion .contBtnSignOff{
+.bodyNavegacionAdmin .contBtnSignOff{
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.bodyNavegacion .contBtnSignOff button{
+.bodyNavegacionAdmin .contBtnSignOff button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,7 +122,7 @@
     transition: 2s;
 }
 
-.bodyNavegacion .contBtnSignOff button .icon{
+.bodyNavegacionAdmin .contBtnSignOff button .icon{
     width: 30px;
     height: 30px;
     display: flex;
@@ -132,11 +132,11 @@
     border-radius: 5px;
 }
 
-.bodyNavegacion .contBtnSignOff button .icon ion-icon{
+.bodyNavegacionAdmin .contBtnSignOff button .icon ion-icon{
     font-size: 20px;
 }
 
-.bodyNavegacion .contBtnSignOff button span{
+.bodyNavegacionAdmin .contBtnSignOff button span{
     margin-right: 10px;
     font-size: 16px;
     font-weight: 500;
@@ -144,18 +144,18 @@
     overflow: hidden;
 }
 
-.bodyNavegacion.active .conBtnToggle,
-.bodyNavegacion.active .contRutas,
-.bodyNavegacion.active .contBtnSignOff {
+.bodyNavegacionAdmin.active .conBtnToggle,
+.bodyNavegacionAdmin.active .contRutas,
+.bodyNavegacionAdmin.active .contBtnSignOff {
     padding: 10px 0px;
     justify-content: center;
 }
 
-.bodyNavegacion .conBtnToggle button {
+.bodyNavegacionAdmin .conBtnToggle button {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.747);
 }
 
-.bodyNavegacion.active .contRutas {
+.bodyNavegacionAdmin.active .contRutas {
     padding: 10px 0;
     background: #96b3ff;
     border-radius: 50px;
@@ -163,34 +163,34 @@
     width: 38px;
 }
 
-.bodyNavegacion.active .contRutas ul {
+.bodyNavegacionAdmin.active .contRutas ul {
     padding: 0;
 }
 
-.bodyNavegacion.active .contRutas ul li .link .icon {
+.bodyNavegacionAdmin.active .contRutas ul li .link .icon {
     /*background: none;*/
     transition: 1s;
 }
 
-.bodyNavegacion.active .contRutas ul li .link {
+.bodyNavegacionAdmin.active .contRutas ul li .link {
     justify-content: center;
 }
 
-.bodyNavegacion.active .contRutas ul li .link .text {
+.bodyNavegacionAdmin.active .contRutas ul li .link .text {
     display: none;
     transition: 3s;
 }
 
-.bodyNavegacion.active .contBtnSignOff button {
+.bodyNavegacionAdmin.active .contBtnSignOff button {
     padding: 0;
     background: white;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.747);
 }
 
-.bodyNavegacion.active .contBtnSignOff button .icon {
+.bodyNavegacionAdmin.active .contBtnSignOff button .icon {
     background: none;
 }
 
-.bodyNavegacion.active .contBtnSignOff button span {
+.bodyNavegacionAdmin.active .contBtnSignOff button span {
     display: none;
 }

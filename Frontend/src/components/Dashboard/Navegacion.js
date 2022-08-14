@@ -9,7 +9,7 @@ export default function Navegacion(props) {
 
 
   return (
-    <div className={props.actiMenu ? 'bodyNavegacion active' : 'bodyNavegacion'}>
+    <div className={props.actiMenu ? 'bodyNavegacionAdmin active' : 'bodyNavegacionAdmin'}>
       <div className='conBtnToggle'>
         <button onClick={ () => {
           props.actiToggle()

@@ -18,16 +18,35 @@ const Register = () => {
         apellido:'',
         correo:'',
         password:'',
-        fecha_nacimiento:"",
+        fecha_nacimiento:"01-01-0001",
         telefono:""
     })
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
-        window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(register))
-        navigate('/')
-        registrarUsuario(register)
+        registrarUsuario(register);
+        let timerInterval
+        Swal.fire({
+            title: 'Registrado Usuario',
+            html: 'I will close in <b></b> milliseconds.',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if( datosUser !== 'cargando' || datosUser ){
+                navigate('/login')
+            }
+        })
         
     };
 

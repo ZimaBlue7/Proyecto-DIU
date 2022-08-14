@@ -9,6 +9,9 @@ import '../../Styles/Dashboard/ContPages.css';
 import Navegacion from './Navegacion';
 import Home from './Home'
 
+// Estados
+import UserAdminState from '../../Context/UserAdmin/UserAdminState';
+
 export default function ContPages() {
 
   const { subpage } = useParams();
@@ -33,7 +36,7 @@ export default function ContPages() {
 
   }
 
-  return (
+  return <UserAdminState>
     <div className={actiMenu ? 'BodyDashboard active' : 'BodyDashboard'}>
 
       <Navegacion rol = {""} actiMenu = {actiMenu} actiToggle = {actiToggle} />
@@ -57,7 +60,7 @@ export default function ContPages() {
         </div>
         
       </div>
-      
     </div>
-  )
+  </UserAdminState>
+    
 }

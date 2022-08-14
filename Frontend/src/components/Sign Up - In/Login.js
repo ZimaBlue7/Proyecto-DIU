@@ -35,12 +35,35 @@ const Login = (props) => {
         e.preventDefault();
         try{
 
-            const elem = window.localStorage.getItem('sucur-salud-proyect-diu-login')
-            const dato = elem ? JSON.parse(elem) : null
-
-            validarUsuario(dato);
-            console.log(datosUser)
-            navigate('/')
+            validarUsuario(body);
+            let timerInterval
+            Swal.fire({
+                title: 'Validando',
+                html: 'I will close in <b></b> milliseconds.',
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                  Swal.showLoading()
+                  const b = Swal.getHtmlContainer().querySelector('b')
+                  timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                  }, 100)
+                },
+                willClose: () => {
+                  clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                console.log(datosUser)
+                if( datosUser !== 'cargando' || datosUser ){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Bienvenido a' + datosUser.nombre,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    navigate('/')
+                }
+            })
 
         }catch(e){
             console.log(e)
