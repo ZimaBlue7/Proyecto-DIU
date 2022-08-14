@@ -45,21 +45,21 @@ export default function home(){
         </div>
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="10000">
-          <img src={imagenes.papel} class="d-block w-100" alt="..."/>
+          <img src={imagenes.papel} class="d-block w-100" alt="..."  width="375" height="375"/>
             <div class="carousel-caption d-none d-md-block">
               <h5>Papel Scott</h5>
                 <p>Ingresa a el apartado de productos para conocer más</p>
             </div>
         </div>
       <div class="carousel-item" data-bs-interval="2000">
-        <img src={imagenes.pañales} class="d-block w-100" alt="..."/>
+        <img src={imagenes.pañales} class="d-block w-100" alt="..."  width="375" height="375" />
           <div class="carousel-caption d-none d-md-block">
             <h5>Pañales</h5>
             <p>Some Ingresa a el apartado de productos para conocer más</p>
           </div>
       </div>
       <div class="carousel-item">
-        <img src={imagenes.yodora} class="d-block w-100" alt="..."/>
+        <img src={imagenes.yodora} class="d-block w-100" alt="..."  width="375" height="375" />
           <div class="carousel-caption d-none d-md-block">
             <h5>Yodora</h5>
             <p>Ingresa a el apartado de productos para conocer más</p>
@@ -82,44 +82,44 @@ export default function home(){
       </div>
 
     <section className='cuadro2'> 
-      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="10000">
-          <img src={imagenes.listerine} class="d-block w-100" alt="..."/>
-            <div class="carousel-caption d-none d-md-block">
-              <h5>listerine</h5>
-                <p>Ingresa al apartado de productos para conocer más...</p>
-            </div>
-        </div>
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src={imagenes.raid} class="d-block w-100" alt="..."/>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Raid</h5>
-              <p>Ingresa al apartado de productos para conocer más...</p>
-          </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src={imagenes.listerine} class="d-block w-100" alt="..."  width="375" height="375" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="text-dark" >Listerine</h5>
+        <p class="text-dark" >Ingresa al apartado de productos para conocer más.</p>
       </div>
-      <div class="carousel-item">
-        <img src={imagenes.benetCalcio} class="d-block w-100" alt="..."/>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Benet + calcio</h5>
-              <p>Ingresa al apartado de productos para conocer más...</p>
-          </div>
+    </div>
+    <div class="carousel-item">
+    <img src={imagenes.raid} class="d-block w-100" alt="..."  width="375" height="375" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="text-dark" >Raid</h5>
+        <p class="text-dark" >Ingresa al apartado de productos para conocer más.</p>
       </div>
+    </div>
+    <div class="carousel-item">
+    <img src={imagenes.benet  } class="d-block w-100" alt="..."  width="375" height="375" />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 class="text-dark">BenetCalcio</h5>
+        <p class="text-dark" >Ingresa al apartado de productos para conocer más.</p>
       </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> 
     </section>
 
     <section className='futer'>
@@ -130,4 +130,3 @@ export default function home(){
   );
       
 }
-
