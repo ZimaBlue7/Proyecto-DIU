@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import images from '../../Assets/imagenes.js'
 import Swal from 'sweetalert2';
 import defaultImg from '../../Assets/farmacia.png'
-import '../../Styles/Menu.css'
+import '../../Styles/Menu/Menu.css'
 import Footer from "../General/Footer";
 import Navegation from '../General/Navegation.js';
 
@@ -20,7 +20,9 @@ const Menu = () => {
 
   useEffect(() => {
     getProduct()    
-  })
+  }, [listProduct])
+
+  const navigate = useNavigate();
 
   return <div className='bodyMenu'>
       <Navegation/>
@@ -29,11 +31,17 @@ const Menu = () => {
         {
           listProduct && listProduct.length > 0
             ? listProduct.map( item => {
-              return <div class="cardProduct" to={'/menu/'+item.id} >
-                <img src={defaultImg} class="imgProduct" alt="..."/>
-                <div class="cardBody"> 
-                  <h4 class="cardTitle">{item.nombre}</h4>
-                  <p class="cardText">{'$'+item.precio}</p>
+              return <div className="cardProduct" key={item.id} >
+                <img src={defaultImg} className="imgProduct" alt="..." onClick={() => {
+                  navigate('/menu/'+item.id)
+                }}/>
+                <div className="cardBody"> 
+                  <h4 className="cardTitle" onClick={() => {
+                    navigate('/menu/'+item.id)
+                  }}>{item.nombre}</h4>
+                  <p className="cardText" onClick={() => {
+                    navigate('/menu/'+item.id)
+                  }}>{'$'+item.precio}</p>
                   <button onClick={() => {
                     console.log(item)
                     addProduct(item)
@@ -43,7 +51,7 @@ const Menu = () => {
                       showConfirmButton: false,
                       timer: 3000,
                     })
-                  }} class="btn btn-success">Agregar al carrito</button>
+                  }} className="btn btn-success">Agregar al carrito</button>
                 </div>
               </div>
             } )

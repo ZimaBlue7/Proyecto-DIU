@@ -37,7 +37,7 @@ export default function Carrito() {
                     <h3>List Product</h3>
                     <button onClick={() => {
                         setActiveLP(!activeListProduct)
-                    }}>{ activeListProduct ? <span class="material-symbols-outlined">expand_more</span> : <span class="material-symbols-outlined">
+                    }}>{ activeListProduct ? <span className="material-symbols-outlined">expand_more</span> : <span className="material-symbols-outlined">
                     expand_less
                     </span>}</button>
                 </div>

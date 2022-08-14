@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../Styles/checkout.css'
+import '../../Styles/Menu/checkout.css'
 
 export default class Checkout extends Component {
 
