@@ -13,7 +13,7 @@ export default class Checkout extends Component {
         
     let data = {
           name: this.props.dato.nombre,
-          description: this.props.dato.descripcion,
+          description: this.props.dato.nombre,
           currency: "cop",
           amount: (this.props.dato.precio * this.props.dato.cantidad) + 1000,
           tax_base: this.props.dato.precio * this.props.dato.cantidad,
