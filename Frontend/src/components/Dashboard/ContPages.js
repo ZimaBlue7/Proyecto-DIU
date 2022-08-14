@@ -7,7 +7,8 @@ import '../../Styles/Dashboard/ContPages.css';
 
 // Componentes
 import Navegacion from './Navegacion';
-import Home from './Home'
+import Home from './Home';
+import NotFound from '../Dashboard/NotFound';
 
 // Estados
 import UserAdminState from '../../Context/UserAdmin/UserAdminState';
@@ -33,6 +34,9 @@ export default function ContPages() {
     else if( subpage === "home" ) {
       return <Home/>
     }
+    else if( subpage === "mantenimiento" ){
+      return <NotFound/>
+    }
 
   }
 
@@ -45,7 +49,6 @@ export default function ContPages() {
 
         <div className='contHeader'>
           <p className='title'>
-            TITULO
           </p>
           <div className='contBtns'>
             <button className='colorFondo'><ion-icon name="moon-outline"></ion-icon></button>

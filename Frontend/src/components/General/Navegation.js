@@ -10,7 +10,7 @@ import UserContext from '../../Context/Users/UserContext';
 export default function Navegation() {
 
     const userContext = useContext(UserContext);
-    const {datosUser, validarUsuario} = userContext;
+    const {datosUser, verificarLogin} = userContext;
 
     useEffect(() => {
 
@@ -18,7 +18,7 @@ export default function Navegation() {
         const dato = elem ? JSON.parse(elem) : null
 
         if( dato ){
-            validarUsuario(dato);
+            verificarLogin(dato);
         }        
         
     }, [])
@@ -68,6 +68,16 @@ export default function Navegation() {
                         :
                         <>
                             <ul>
+                                {console.log(datosUser)}
+                                {
+                                    datosUser.rol === "admin" || datosUser.rol === "employee" 
+                                    ? <li>
+                                        <Link className='link' to='/admin'>
+                                            Administracion
+                                        </Link>
+                                    </li>  
+                                    : <></>
+                                }
                                 <li>
                                     <Link className='link' to='/notfound'>
                                         Nosotros

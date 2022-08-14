@@ -7,7 +7,7 @@ import UserContext from '../../Context/Users/UserContext';
 function NabvarP(props) {
 
   const userContext = useContext(UserContext)
-  const {validarUsuario} = userContext
+  const {verificarLogin} = userContext
   const navigate = useNavigate();
 
   return (
@@ -49,7 +49,7 @@ function NabvarP(props) {
     <li><hr class="dropdown-divider"/></li>
     <li><button onClick={ () => {
         window.localStorage.removeItem('sucur-salud-proyect-diu-login');
-        validarUsuario("cargando");
+        verificarLogin(null);
         navigate('/')
       }
     } class="dropdown-item" href="/">Cerrar Sesion</button></li>

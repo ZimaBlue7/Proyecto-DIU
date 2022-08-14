@@ -32,7 +32,7 @@
     margin: 0 5px;
     border: 1px solid rgba(156, 153, 153, 0.699);
     border-radius: 20px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.459);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.459);
     padding: 5px 15px;
 }
 
@@ -51,21 +51,53 @@
     padding: 10px 0;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .contHomeAdmin .datosRecientes .contUserRecientes {
     width: 500px;
     min-height: 200px;
-    border: 1px solid gray;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.459);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 5px 10px;
+}
+
+.contHomeAdmin .datosRecientes .contUserRecientes .listUserRecientes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+
+.headerItemUser {
+    font-weight: 500;
+}
+
+.contHomeAdmin .datosRecientes .contUserRecientes .listUserRecientes .itemUser {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.contHomeAdmin .datosRecientes .contUserRecientes .listUserRecientes .itemUser img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }
 
 .contHomeAdmin .datosRecientes .contTareasRecientes {
     width: calc(100% - 600px);
     min-height: 200px;
-    background: blue;
     border-radius: 10px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.459);
+    padding: 5px 10px;
 }
 
 .contHomeAdmin .graficosProductoTem {

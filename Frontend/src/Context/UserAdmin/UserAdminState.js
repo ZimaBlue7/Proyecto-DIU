@@ -6,7 +6,6 @@ import UserAdminReducer from './UserAdminReducer'
 
 const UserAdminState = (props) => {
     const inicialState = {
-        userLoginDatya: {},
         datos: {}
     }
 
@@ -15,6 +14,10 @@ const UserAdminState = (props) => {
     const getUsers = async () => {
         try {
             const res = await axios.get("https://surcusalud.herokuapp.com/users");
+            dispatch({
+                type: 'OBTENER_USERS',
+                payload: res.data
+            })
         } catch (error) {
             console.log(error)
         }
@@ -44,32 +47,10 @@ const UserAdminState = (props) => {
             console.log(error);
         }
     }
-    
-    const validarUsuario = async (datos) => {
-        try {
-
-            /*const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
-            console.log(res.data)*/
-            dispatch({
-                type: 'VALIDAR_USUARIO',
-                payload: datos
-            })
-
-            //window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(res.data))
-
-        } catch (error) {
-            dispatch({
-                type: 'ERROR_VALIDAION',
-                payload: 'error'
-            })
-            console.log(error)
-        }
-    }
 
     return (
         <UserAdminContext.Provider value={{
-            datosUser: state.datosUser,
-            validarUsuario,
+            datos: state.datos,
             getUsers
         }}>
             {props.children}

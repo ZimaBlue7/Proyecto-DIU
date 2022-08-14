@@ -9,7 +9,7 @@ import UserContext from '../../Context/Users/UserContext';
 const Login = (props) => {
     
     const userContext = useContext(UserContext);
-    const { validarUsuario, datosUser } = userContext;
+    const { validarUsuario, verificarLogin, datosUser } = userContext;
 
     const navigate = useNavigate();
     const [body, setBody] = useState({ email: '', password: '' })
@@ -19,8 +19,8 @@ const Login = (props) => {
         const elem = window.localStorage.getItem('sucur-salud-proyect-diu-login')
         const dato = elem ? JSON.parse(elem) : null
 
-        if( dato ){
-            validarUsuario(dato);
+        if( dato && dato.id ){
+            verificarLogin(dato)
             navigate('/')
         }        
         
@@ -39,27 +39,23 @@ const Login = (props) => {
             let timerInterval
             Swal.fire({
                 title: 'Validando',
-                html: 'I will close in <b></b> milliseconds.',
-                timer: 1000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: () => {
                   Swal.showLoading()
-                  const b = Swal.getHtmlContainer().querySelector('b')
-                  timerInterval = setInterval(() => {
-                    b.textContent = Swal.getTimerLeft()
-                  }, 100)
                 },
                 willClose: () => {
                   clearInterval(timerInterval)
                 }
             }).then((result) => {
                 console.log(datosUser)
-                if( datosUser !== 'cargando' || datosUser ){
+                if( datosUser ){
+                    window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(datosUser))
                     Swal.fire({
                         icon: 'success',
-                        title: 'Bienvenido a' + datosUser.nombre,
+                        title: 'Bienvenido a ' + datosUser.nombre,
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                     navigate('/')
                 }

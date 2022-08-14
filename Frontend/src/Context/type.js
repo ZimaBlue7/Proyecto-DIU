@@ -9,3 +9,5 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const ADD_PRODUCT_CAR = "ADD_PRODUCT_CAR"
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
+
+export const OBTENER_USERS = "OBTENER_USERS"

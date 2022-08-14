@@ -18,51 +18,53 @@ export default function Navegacion(props) {
       <div className='contRutas'>
         <ul>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin'>
+              <div className='icon'><ion-icon name="home-outline"></ion-icon></div>
               <span className='text'>Home</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
-              <span className='text'>User</span>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="people-circle-outline"></ion-icon></div>
+              <span className='text'>Users</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="globe-outline"></ion-icon></div>
               <span className='text'>Pagina</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="clipboard-outline"></ion-icon></div>
               <span className='text'>Tareas</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="storefront-outline"></ion-icon></div>
               <span className='text'>Sedes</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="receipt-outline"></ion-icon></div>
               <span className='text'>Pedidos</span>
             </Link>
           </li>
           <li>
-            <Link className='link' to=''>
-              <div className='icon'><ion-icon name="barcode-outline"></ion-icon></div>
+            <Link className='link' to='/admin/mantenimiento'>
+              <div className='icon'><ion-icon name="chatbubble-ellipses-outline"></ion-icon></div>
               <span className='text'>Mensajes</span>
             </Link>
           </li>
         </ul>
       </div>
       <div className='contBtnSignOff'>
-        <button>
+        <button onClick={ () => {
+          navigate('/')
+        } }>
           <span>Sign off</span>
           <div className='icon'>
             <ion-icon name="log-out-outline"></ion-icon>

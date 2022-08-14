@@ -6,7 +6,7 @@ import UserReducer from './UserReducer'
 
 const UserState = (props) => {
     const inicialState = {
-        datosUser: 'cargando'
+        datosUser: null
     }
 
     const [state, dispatch] = useReducer(UserReducer, inicialState)
@@ -14,6 +14,7 @@ const UserState = (props) => {
     const validarUsuario = async (datos) => {
         try {
 
+            console.log(datos)
             const res = await axios.post('https://surcusalud.herokuapp.com/autenticarUser/', datos );
             console.log(res.data)
             dispatch({
@@ -24,11 +25,7 @@ const UserState = (props) => {
             //window.localStorage.setItem('sucur-salud-proyect-diu-login', JSON.stringify(res.data))
 
         } catch (error) {
-            dispatch({
-                type: 'ERROR_VALIDAION',
-                payload: 'error'
-            })
-            console.log(error)
+            console.log(error.response.data)
         }
     }
 
@@ -44,11 +41,25 @@ const UserState = (props) => {
         }
     }
 
+    const verificarLogin = async (datos) => {
+        try {
+
+            dispatch({
+                type: 'VALIDAR_USUARIO',
+                payload: datos
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <UserContext.Provider value={{
             datosUser: state.datosUser,
             validarUsuario,
-            registrarUsuario
+            registrarUsuario,
+            verificarLogin
         }}>
             {props.children}
         </UserContext.Provider>

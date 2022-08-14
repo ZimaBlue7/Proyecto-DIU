@@ -1,28 +1,19 @@
 import {
     VALIDAR_USUARIO,
     REGISTRAR_USUARIO,
-    ERROR_VALIDAION
+    ERROR_VALIDAION,
+    OBTENER_USERS
 } from '../type';
 
 const UserAdminReducer = (state, action) => {
     const {payload, type} = action
 
     switch(type){
-        case VALIDAR_USUARIO:
-            return {
-                ...state,
-                datosUser: payload
-            }
-        case REGISTRAR_USUARIO:
-            return {
-                ...state,
-                datosUser: payload
-            }
-        case ERROR_VALIDAION:
+        case OBTENER_USERS:
            return {
                 ...state,
-                datosUser: payload
-           } 
+                datos: payload
+            } 
         default:
             return state;
     }
