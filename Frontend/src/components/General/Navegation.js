@@ -110,12 +110,12 @@ export default function Navegation() {
                     
                         <ul>
                             <li>
-                                <Link className='link' to='/notfound'>
+                                <Link className='link' to='/sobrenosotros'>
                                     Nosotros
                                 </Link>
                             </li>       
                             <li>
-                                <Link className='link' to='/notfound'>
+                                <Link className='link' to='/contacto'>
                                     Contacto
                                 </Link>
                             </li>    
