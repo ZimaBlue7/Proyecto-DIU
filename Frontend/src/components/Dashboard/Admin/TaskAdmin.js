@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Swal from 'sweetalert2';
 
 import '../../../Styles/Dashboard/taskAdmin.css'
 
@@ -117,10 +118,22 @@ function ItemTask(props) {
         <p className='itemNombre'>Titulo</p>
         <p className='itemFechaCreacion'>Fecha</p>
         <div className='itemAcciones'>
-            <button>
+            <button onClick={() => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'El boton no se encuentra habilitado',
+                })
+            }}>
                 <ion-icon name="pencil-outline"></ion-icon>
-            </button>
-            <button>
+            </button >
+            <button onClick={() => {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'El boton no se encuentra habilitado',
+                })
+            }}>
                 <ion-icon name="trash-outline"></ion-icon>
             </button>
         </div>

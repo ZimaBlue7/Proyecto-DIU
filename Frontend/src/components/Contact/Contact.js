@@ -1,4 +1,5 @@
 import React from 'react'
+import Swal from 'sweetalert2';
 
 import Navegation from '../General/Navegation'
 
@@ -28,11 +29,7 @@ export default function Contact() {
                     <div className='contEmails'>
                         <div className='itemEmail'>
                             <ion-icon name="mail-outline"></ion-icon>
-                            <p>test@tet.com</p>
-                        </div>
-                        <div className='itemEmail'>
-                            <ion-icon name="mail-outline"></ion-icon>
-                            <p>test@tet.com</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -41,59 +38,65 @@ export default function Contact() {
                     <div className='contTelefonosTienda'>
                         <div className='itemPhone'>
                             <ion-icon name="logo-whatsapp"></ion-icon>
-                            <p>3214567895</p>
+                            <p></p>
                         </div>
                         <div className='itemPhone'>
                             <ion-icon name="call-outline"></ion-icon>
-                            <p>4567895</p>
-                        </div>
-                        <div className='itemPhone'>
-                            <ion-icon name="logo-whatsapp"></ion-icon>
-                            <p>3214567895</p>
-                        </div>
-                        <div className='itemPhone'>
-                            <ion-icon name="call-outline"></ion-icon>
-                            <p>2147895</p>
+                            <p></p>
                         </div>
                     </div>
                     
                 </div>
             </div>
-            <div className='contInput'>
-                <div className='inputLabel'>
-                    <label>Nombre*</label>
-                    <input type='text' placeholder='Nombre' required />
+            <div className='contFormBtn'>
+                <div className='contInput'>
+                    <div className='inputLabel'>
+                        <label>Nombre*</label>
+                        <input type='text' placeholder='Nombre' required />
+                    </div>
+                    <div className='inputLabel'>
+                        <label>Apellido*</label>
+                        <input type='text' placeholder='Apellido' required />
+                    </div>
+                    <div className='inputLabel'>
+                        <label>Telefono</label>
+                        <input type='phone' placeholder='Telefono' />
+                    </div>
+                    <div className='inputLabel'>
+                        <label>Correo*</label>
+                        <input type='email' placeholder='Email' required />
+                    </div>
+                    <div className='selectLabel'>
+                        <label>Motivo*</label>
+                        <select required>
+                            <option>Selecionar</option>
+                            <option>Reclamo</option>
+                            <option>Sugerencia</option>
+                            <option>Inquietud</option>
+                            <option>Queja</option>
+                            <option>Inconformida</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div className='textareaLabel'>
+                        <label>Mensaje*</label>
+                        <textarea placeholder='Mensaje' required></textarea>
+                    </div>
+                    
                 </div>
-                <div className='inputLabel'>
-                    <label>Apellido*</label>
-                    <input type='text' placeholder='Apellido' required />
-                </div>
-                <div className='inputLabel'>
-                    <label>Telefono</label>
-                    <input type='phone' placeholder='Telefono' />
-                </div>
-                <div className='inputLabel'>
-                    <label>Correo*</label>
-                    <input type='email' placeholder='Email' required />
-                </div>
-                <div className='selectLabel'>
-                    <label>Motivo*</label>
-                    <select required>
-                        <option>Selecionar</option>
-                        <option>Reclamo</option>
-                        <option>Sugerencia</option>
-                        <option>Inquietud</option>
-                        <option>Queja</option>
-                        <option>Inconformida</option>
-                        <option>Otro</option>
-                    </select>
-                </div>
-                <div className='textareaLabel'>
-                    <label>Mensaje*</label>
-                    <textarea placeholder='Mensaje' required></textarea>
-                </div>
-                
+                <div className='contBtn'>
+                    <button onClick={() => {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'El boton no se encuentra habilitado',
+                        })
+                    }}>
+                        Enviar
+                    </button>
+                </div> 
             </div>
+            
         </div>
     </div>
   )

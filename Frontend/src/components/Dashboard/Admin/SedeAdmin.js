@@ -1,13 +1,11 @@
 import React from 'react'
+import Swal from 'sweetalert2';
 
 import '../../../Styles/Dashboard/sedeAdmin.css'
 
 export default function SedeAdmin() {
   return (
     <div className='bodySedeAdmin'>
-      <CardSede />
-      <CardSede />
-      <CardSede />
       <CardSede />
     </div>
   )
@@ -19,7 +17,13 @@ function CardSede(props) {
     <div className='headerCont'>
       <h2>Nombre</h2>
       <div className='contBtnVerMas'>
-        <button>
+        <button onClick={() => {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'El boton no se encuentra habilitado',
+          })
+        }}>
           Ver mas
         </button>
       </div>

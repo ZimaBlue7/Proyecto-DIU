@@ -71,13 +71,25 @@ export default function UserPague() {
                         <p className='itemCorreo'>{user.correo}</p>
                         <p className='itemRol'>{user.rol}</p>
                         <div className='contBottones itemAccion'>
-                            <button className='btnEdit'>
+                            <button className='btnEdit' onClick={() => {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops...',
+                                    text: 'El boton no se encuentra habilitado',
+                                })
+                            }}>
                                 <ion-icon name="create-outline"></ion-icon>
                             </button>
                             {
                                 datosUser 
                                 ? datosUser.rol === 'admin'
-                                    ?<button className='btnDelete'>
+                                    ?<button className='btnDelete' onClick={() => {
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Oops...',
+                                            text: 'El boton no se encuentra habilitado',
+                                        })
+                                    }}>
                                         <ion-icon name="trash-outline"></ion-icon>
                                      </button>
                                     : <></>
@@ -165,6 +177,11 @@ function ModalAddUser(props) {
                 <button className='btnAgregarAdmin' onClick={() => {
                     console.log(datos)
                     props.activeModal()
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Por el momento no es posible agregar al usuario',
+                    })
                 }}>
                     Agregar
                 </button>
