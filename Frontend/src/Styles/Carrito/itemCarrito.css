@@ -43,13 +43,13 @@
 }
 
 .bodyItemProduct .contDatoProduct .contButtonItem .btnInc{
-    background: rgb(190, 190, 243);
-}
-
-.bodyItemProduct .contDatoProduct .contButtonItem .btnDec{
     background: rgb(149, 238, 149);
 }
 
+.bodyItemProduct .contDatoProduct .contButtonItem .btnDec{
+    background: rgb( 241, 101, 101  );
+}
+
 .bodyItemProduct .contDatoProduct .contButtonItem .btnDelete{
-    background: rgb(241, 101, 101);
+    background: rgb(190, 190, 243);
 }

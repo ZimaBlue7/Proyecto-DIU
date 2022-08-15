@@ -32,7 +32,7 @@ export default function AboutUs() {
         <img className='logoAbout' src={logo} alt='' />
         <div className='contAbout'>
             <div className='contTitleAbout'>
-                <h2>¿Quienes somo?</h2>
+                <h2>¿Quienes somos?</h2>
             </div>
             <p>Al comparar los mockups iniciales, podremos observar que el color que se utilizó no era el más adecuado con respecto a lo que la empresa quería transmitir, el cliente también exigió algunos cambios. También tomamos en cuenta las clases recibidas para hacer los respectivos ajustes en ciertas interfaces que encontramos falencias.</p>
             <img className='imgContAbout' src={aboutIcon} alt=''/>

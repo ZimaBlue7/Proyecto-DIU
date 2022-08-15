@@ -91,26 +91,32 @@ export default function UserPague() {
             }
         </div>
         
-        <div className='contBtnFlotanteUser'>
-            <button className='btnFlotante' onClick={() => {
-                Swal.fire({
-                        title: '¿Que tipo de usuario deseas agregar?',
-                        showDenyButton: true,
-                        confirmButtonText: 'Cliente',
-                        denyButtonText: `Empleado`,
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            setRol('cliente')
-                        } else if (result.isDenied) {
-                            setRol('empleado')
-                        }
-                    })
-                activeModal()
-            }}>
-                Agregar
-                <ion-icon name="add-outline"></ion-icon>
-            </button>
-        </div>
+        {
+          datosUser 
+          ? datosUser.rol === 'admin'
+              ? <div className='contBtnFlotanteUser'>
+                    <button className='btnFlotante' onClick={() => {
+                        Swal.fire({
+                                title: '¿Que tipo de usuario deseas agregar?',
+                                showDenyButton: true,
+                                confirmButtonText: 'Cliente',
+                                denyButtonText: `Empleado`,
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    setRol('cliente')
+                                } else if (result.isDenied) {
+                                    setRol('empleado')
+                                }
+                            })
+                        activeModal()
+                    }}>
+                        Agregar
+                        <ion-icon name="add-outline"></ion-icon>
+                    </button>
+                </div>
+              : <></>
+          : <></>  
+        }
 
         <ModalAddUser active = {addUserActive} activeModal = {activeModal} rol = {rol} />
 
@@ -149,6 +155,7 @@ function ModalAddUser(props) {
                     : <></>
                 : <></>
             }
+            
             <div className='contbtn'>
                 <button className='btnCancelar' onClick={() => {
                     props.activeModal()

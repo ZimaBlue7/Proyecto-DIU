@@ -46,7 +46,7 @@ export default function ContPages() {
       return <SedeAdmin/>
     }
     else if( subpage === "sede" ){
-      return <Sede/>
+      return <NotFound/>
     }
     else if( subpage === "tareas" ){
       return <TaskAdmin/>
