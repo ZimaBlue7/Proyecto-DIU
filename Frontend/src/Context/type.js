@@ -13,7 +13,7 @@ export const OBTENER_USERS = "OBTENER_USERS";
 export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
 export const ADD_HORARIO = 'ADD_HORARIO';
 export const GET_HORARIO = "GET_HORARIO";
-
+export const GET_PRODUCTS=  'GET_PRODUCTS';
 // Productos
 export const GET_PRODUCT = "GET_PRODUCT";
 

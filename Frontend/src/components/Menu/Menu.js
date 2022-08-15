@@ -31,6 +31,7 @@ const Menu = () => {
         {
           listProduct && listProduct.length > 0
             ? listProduct.map( item => {
+              console.log(item.id)
               return <div className="cardProduct" key={item.id} >
                 <img src={defaultImg} className="imgProduct" alt="..." onClick={() => {
                   navigate('/menu/'+item.id)

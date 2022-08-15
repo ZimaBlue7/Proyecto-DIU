@@ -18,7 +18,7 @@ const ProductState = (props) => {
             const res = await axios.get("https://my-json-server.typicode.com/JohanDavidPortocarrero/filejson/productosSurcusalud");
             
             dispatch({
-                type: 'GET_PRODUCT',
+                type: 'GET_PRODUCTS',
                 payload: res.data
             })
 

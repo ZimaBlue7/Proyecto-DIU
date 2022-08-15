@@ -24,6 +24,7 @@ export default function ViewProduct(props) {
     useEffect(() => {
         if( idproduct ){
             getProductUnd(idproduct)
+            console.log(product)
         }
     })
 
@@ -82,6 +83,7 @@ export default function ViewProduct(props) {
                                 timer: 3000,
                             })
                         }} className='btnAgregar'>AGREGAR AL CARRITO</button>
+                        {console.log(product.precio)}
                     </div>
                 : <></>
             }
