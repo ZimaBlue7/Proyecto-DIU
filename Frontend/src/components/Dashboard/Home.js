@@ -22,26 +22,30 @@ export default function homeAdmin() {
       <div className='resumenDatos'>
         <div className='totalUser'>
           <h1>{datos ? datos.length : '0'} </h1>
+          <p>Usuarios</p>
           <span className='iconCard'>
             <ion-icon name="people-outline"></ion-icon>
           </span>
         </div>
         <div className='totalProduct'>
           <h1>{listProduct ? listProduct.length : '0'}</h1>
+          <p>Productos</p>
           <span className='iconCard'>
-            <ion-icon name="file-tray-stacked-outline"></ion-icon>
+            <ion-icon name="pricetags-outline"></ion-icon>
           </span>
         </div>
         <div className='totalPedidos'>
           <h1>0</h1>
+          <p>Pedidos</p>
           <span className='iconCard'>
             <ion-icon name="receipt-outline"></ion-icon>
           </span>
         </div>
         <div className='totalDinero'>
-          <h1>$0</h1>
+          <h1>0</h1>
+          <p>Tareas</p>
           <span className='iconCard'>
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="clipboard-outline"></ion-icon>
           </span>
         </div>
       </div>

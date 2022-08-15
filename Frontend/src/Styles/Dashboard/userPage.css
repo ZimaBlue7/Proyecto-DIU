@@ -1,0 +1,150 @@
+.bodyUserAdmin {
+    position: relative;
+    border-radius: 15px;
+    height: 100%;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.514);
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.bodyUserAdmin::-webkit-scrollbar{
+    width: 10px;
+}
+
+.bodyUserAdmin::-webkit-scrollbar-thumb{
+    background: linear-gradient(#036aaf, #00ffea);
+    border-radius: 6px;
+}
+
+.bodyUserAdmin .contReusumenDatos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contReusumenDatos div {
+    position: relative;
+    width: 250px;
+    height: 120px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.514);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.bodyUserAdmin .contReusumenDatos div p {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.bodyUserAdmin .contReusumenDatos div ion-icon {
+    font-size: 50px;
+}
+
+.bodyUserAdmin .contTableListUser{
+    width: 100%;
+
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.bodyUserAdmin .contTableListUser .header p{
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid gray;
+    padding: 2px;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemId {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemIcon {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemNombre{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemCorreo {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemRol {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemAccion {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyUserAdmin .contTableListUser .itemListUser .itemAccion button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    margin: 0px 5px;
+}
+
+.bodyUserAdmin .btnFlotante {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    border: none;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    background: none;
+}
+
+.bodyUserAdmin .btnFlotante ion-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.514);
+    margin-left: 10px;
+}

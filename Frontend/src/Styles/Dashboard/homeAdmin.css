@@ -39,11 +39,17 @@
 .contHomeAdmin .resumenDatos div .iconCard{
     position: absolute;
     font-size: 50px;
-    right: 20px;
-    bottom: 0px;
+    right: 10px;
+    bottom: -5px;
 }
 
 .contHomeAdmin .resumenDatos div .iconCard ion-icon{
+    color: rgb(99, 98, 98);
+}
+
+.contHomeAdmin .resumenDatos div p{
+    font-size: 20px;
+    font-weight: 500;
     color: rgb(99, 98, 98);
 }
 

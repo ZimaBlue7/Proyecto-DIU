@@ -1,0 +1,120 @@
+.bodySedeAdmin {
+    border-radius: 15px;
+    height: 100%;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.514);
+    padding: 30px 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.bodySedeAdmin::-webkit-scrollbar{
+    width: 10px;
+}
+
+.bodySedeAdmin::-webkit-scrollbar-thumb{
+    background: rgb(68, 68, 68);
+    border-radius: 6px;
+}
+
+.bodySedeAdmin .contCardSede {
+    width: 400px;
+    min-height: 300px;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    margin: 10px;
+}
+
+.bodySedeAdmin .contCardSede .headerCont {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosEspeficicos {
+    width: 100%;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosEspeficicos .itemDatoEsp {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 35px;
+    margin: 5px 0;
+    padding: 0 10px;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosEspeficicos .itemDatoEsp ion-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosEspeficicos .itemDatoEsp p{
+    margin: 0;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosGenerales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosGenerales .itemDatoGen {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 170px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.514);
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosGenerales .itemDatoGen ion-icon {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 40px;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contDatosGenerales .itemDatoGen p {
+    font-weight: 500;
+}
+
+.bodySedeAdmin .contCardSede .contInfoData .contBtnVerMas {
+    width: 100%;
+    text-align: end;
+}
+
+.bodySedeAdmin .contCardSede .contBtnVerMas button {
+    border: none;
+    border-radius: 20px;
+    padding: 5px 30px;
+    background: rgb(177, 172, 241);
+    font-size: 18px;
+    font-weight: 500;
+}

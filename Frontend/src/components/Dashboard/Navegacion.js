@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import {Link, useNavigate} from "react-router-dom";
+
+import UserContext from '../../Context/Users/UserContext';
 
 import '../../Styles/Dashboard/navegacion.css'
 
@@ -7,6 +9,19 @@ export default function Navegacion(props) {
 
   const navigate = useNavigate();
 
+  const userContext = useContext(UserContext);
+  const {datosUser, verificarLogin} = userContext;
+
+  useEffect(() => {
+
+    const elem = window.localStorage.getItem('sucur-salud-proyect-diu-login')
+    const dato = elem ? JSON.parse(elem) : null
+
+    if( dato ){
+      verificarLogin(dato);
+    }        
+    
+  }, [])
 
   return (
     <div className={props.actiMenu ? 'bodyNavegacionAdmin active' : 'bodyNavegacionAdmin'}>
@@ -24,7 +39,7 @@ export default function Navegacion(props) {
             </Link>
           </li>
           <li>
-            <Link className='link' to='/admin/mantenimiento'>
+            <Link className='link' to='/admin/pageusers'>
               <div className='icon'><ion-icon name="people-circle-outline"></ion-icon></div>
               <span className='text'>Users</span>
             </Link>
@@ -35,18 +50,33 @@ export default function Navegacion(props) {
               <span className='text'>Pagina</span>
             </Link>
           </li>
-          <li>
-            <Link className='link' to='/admin/mantenimiento'>
-              <div className='icon'><ion-icon name="clipboard-outline"></ion-icon></div>
-              <span className='text'>Tareas</span>
-            </Link>
-          </li>
-          <li>
-            <Link className='link' to='/admin/mantenimiento'>
-              <div className='icon'><ion-icon name="storefront-outline"></ion-icon></div>
-              <span className='text'>Sedes</span>
-            </Link>
-          </li>
+          
+          {
+            datosUser 
+            ? datosUser.rol === 'admin'
+              ? <>
+                  <li>
+                    <Link className='link' to='/admin/tareas'>
+                      <div className='icon'><ion-icon name="clipboard-outline"></ion-icon></div>
+                      <span className='text'>Tareas</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className='link' to='/admin/sedes'>
+                      <div className='icon'><ion-icon name="storefront-outline"></ion-icon></div>
+                      <span className='text'>Sedes</span>
+                    </Link>
+                  </li>
+                </>
+              : <li>
+                  <Link className='link' to='/admin/sede'>
+                    <div className='icon'><ion-icon name="storefront-outline"></ion-icon></div>
+                    <span className='text'>Sede</span>
+                  </Link>
+                </li>
+            : <></>
+          }
+          
           <li>
             <Link className='link' to='/admin/mantenimiento'>
               <div className='icon'><ion-icon name="receipt-outline"></ion-icon></div>

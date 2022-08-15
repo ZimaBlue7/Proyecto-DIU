@@ -1,0 +1,17 @@
+.bodySedeEmployee {
+    border-radius: 15px;
+    height: 100%;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.514);
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.bodySedeEmployee::-webkit-scrollbar{
+    width: 10px;
+}
+
+.bodySedeEmployee::-webkit-scrollbar-thumb{
+    background: linear-gradient(#036aaf, #00ffea);
+    border-radius: 6px;
+}

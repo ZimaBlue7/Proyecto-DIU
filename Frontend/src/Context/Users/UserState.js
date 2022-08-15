@@ -6,7 +6,8 @@ import UserReducer from './UserReducer'
 
 const UserState = (props) => {
     const inicialState = {
-        datosUser: null
+        datosUser: null,
+        estado: 'cargando'
     }
 
     const [state, dispatch] = useReducer(UserReducer, inicialState)
@@ -54,12 +55,28 @@ const UserState = (props) => {
         }
     }
 
+    const updateUsuario = async (id, datos) => {
+        try {
+
+            const res = await axios.put(''+id, datos);
+            dispatch({
+                type: 'UPDATE_USUARIO',
+                payload: datos
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <UserContext.Provider value={{
             datosUser: state.datosUser,
+            estado: state.estado,
             validarUsuario,
             registrarUsuario,
-            verificarLogin
+            verificarLogin,
+            updateUsuario
         }}>
             {props.children}
         </UserContext.Provider>
